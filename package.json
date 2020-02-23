@@ -4,8 +4,8 @@
   "description": "Api para el calculos astrologicos",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=src node index,js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_PATH=src node index.js",
+    "test": "NODE_PATH=src jest"
   },
   "keywords": [
     "astrology"
@@ -17,6 +17,8 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "swisseph": "^0.5.13"
   }
 }
