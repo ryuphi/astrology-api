@@ -1,0 +1,22 @@
+{
+  "name": "astrology_api",
+  "version": "1.0.0",
+  "description": "Api para el calculos astrologicos",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_PATH=src node index,js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "astrology"
+  ],
+  "author": "ryuphi",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
