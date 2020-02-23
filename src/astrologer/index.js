@@ -2,10 +2,11 @@ const swisseph = require('swisseph');
 
 swisseph.swe_set_ephe_path(__dirname + '/../../eph');
 
-const PLANETS = {
+let PLANETS = {
   sun: swisseph.SE_SUN,
   moon: swisseph.SE_MOON,
   mercury: swisseph.SE_MERCURY,
+  venus: swisseph.SE_VENUS,
   uranus: swisseph.SE_URANUS,
 }
 
@@ -56,5 +57,6 @@ const position = async (astrologyObject, moment) => {
 }
 
 module.exports = {
-  position
+  position,
+  PLANETS
 }
