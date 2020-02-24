@@ -1,2 +1,2 @@
 # astrology-api
-una api rest para obtener ca
+una api rest astrologica 🤷‍♂️
