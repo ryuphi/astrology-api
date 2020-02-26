@@ -2,7 +2,9 @@ const router = require('express-promise-router')();
 
 const astrologer = require('astrologer');
 
-router.post('/ephemeris', async (req, res, next) => {
+router.get('/', async () => res.status(200).json({message: 'Welcome to Astrology api!'}));
+
+router.post('/ephemeris', async (req, res) => {
   const planets = {};
 
   await Object.keys(astrologer.PLANETS).forEach(async item => {
@@ -18,6 +20,6 @@ router.post('/ephemeris', async (req, res, next) => {
       astros: planets
     }
   });
-})
+});
 
 module.exports = router;
