@@ -3,7 +3,7 @@ name: Node.js CI
 on: [push]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,9 +18,14 @@ jobs:
     - run: npm test
       env:
         CI: true
-    - name: Deploy to Heroku
-      uses: AkhileshNS/heroku-deploy@v3.0.0
-      with:
-        heroku_api_key: ${{ secrets.HEROKU_API_TOKEN }}
-        heroku_email: ${{ secrets.HEROKU_EMAIL }}
-        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        
+  deploy:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.0.0 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
