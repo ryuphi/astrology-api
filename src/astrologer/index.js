@@ -21,51 +21,79 @@ let PLANETS = {
   juno: swisseph.SE_JUNO
 };
 
-const zodiacSign = (degrees) => Math.floor(degrees / 30);
+const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
 
 /**
  * @param {string} astrologyObject 
  * @param {Date} moment 
  */
 const position = async (astrologyObject, moment) => {
-  const {julianDayUT} = swisseph.swe_utc_to_jd(
-    moment.getUTCFullYear(),
-    (moment.getUTCMonth() +1),
-    moment.getUTCDate(),
-    moment.getUTCHours(), 
-    moment.getUTCMinutes(),
-    moment.getUTCSeconds(),
-    swisseph.SE_GREG_CAL
-  )
+  const julianDayUT = utcToJulianUt(moment);
 
-  const flag = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
+  const astro = getPositionOfAstro(astrologyObject, julianDayUT);
 
-  const planet = swisseph.swe_calc_ut(julianDayUT, PLANETS[astrologyObject], flag);
-
-  const degrees = Math.floor(planet.longitude);
-
-  const decimalOfLongitude = planet.longitude - degrees;
-
-  const minutes = Math.floor(decimalOfLongitude * 60);
-  
-  const seconds = Math.floor(((decimalOfLongitude * 60) - minutes) * 60);
-
-  const sign = zodiacSign(degrees);
+  const dms = transformLongitudeToDMSPosition(astro.longitude);
 
   const object = {
     position: {
-      longitude: planet.longitude,
-      dms: {
-        degrees: degrees % 30,
-        sign,
-        minutes,
-        seconds
-      }
+      longitude: astro.longitude,
+      dms
     }
   };
 
   return object;
 }
+
+/**
+ * @param {Date} utcDate 
+ */
+const utcToJulianUt = utcDate => {
+  const {julianDayUT} = swisseph.swe_utc_to_jd(
+    utcDate.getUTCFullYear(),
+    (utcDate.getUTCMonth() + 1),
+    utcDate.getUTCDate(),
+    utcDate.getUTCHours(), 
+    utcDate.getUTCMinutes(),
+    utcDate.getUTCSeconds(),
+    swisseph.SE_GREG_CAL
+  )
+
+  return julianDayUT;
+}
+
+/**
+ * @param {String} astro 
+ * @param {Number} julianDayUT 
+ */
+const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDayUT, PLANETS[astro], FLAG);
+
+/**
+ * @param {Number} longitude
+ */
+const transformLongitudeToDMSPosition = longitude => {
+
+  const degrees = Math.floor(longitude);
+
+  const decimals = longitude - degrees;
+
+  const minutes = Math.floor(decimals * 60);
+  
+  const seconds = Math.floor(((decimals * 60) - minutes) * 60);
+
+  const sign = zodiacSign(degrees);
+
+  return {
+    degrees: degrees % 30,
+    sign,
+    minutes,
+    seconds
+  }
+}
+
+/**
+ * @param {Number} degrees
+ */
+const zodiacSign = degrees => Math.floor(degrees / 30);
 
 module.exports = {
   position,
