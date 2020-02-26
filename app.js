@@ -3,8 +3,8 @@ const api = require('api');
 
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(api);
 
-module.exports = app
+module.exports = app;

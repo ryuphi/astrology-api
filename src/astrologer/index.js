@@ -7,17 +7,28 @@ let PLANETS = {
   moon: swisseph.SE_MOON,
   mercury: swisseph.SE_MERCURY,
   venus: swisseph.SE_VENUS,
+  mars: swisseph.SE_MARS,
+  jupiter: swisseph.SE_JUPITER,
+  saturn: swisseph.SE_SATURN,
   uranus: swisseph.SE_URANUS,
-}
+  neptune: swisseph.SE_NEPTUNE,
+  pluto: swisseph.SE_PLUTO,
+  chiron: swisseph.SE_CHIRON,
+  lilith: swisseph.SE_MEAN_APOG,
+  ceres: swisseph.SE_CERES,
+  vesta: swisseph.SE_VESTA,
+  pallas: swisseph.SE_PALLAS,
+  juno: swisseph.SE_JUNO
+};
 
-const zodiacSign = (degrees) => Math.floor(degrees / 30)
+const zodiacSign = (degrees) => Math.floor(degrees / 30);
 
 /**
  * @param {string} astrologyObject 
  * @param {Date} moment 
  */
 const position = async (astrologyObject, moment) => {
-  const {julianDayET, julianDayUT} = swisseph.swe_utc_to_jd(
+  const {julianDayUT} = swisseph.swe_utc_to_jd(
     moment.getUTCFullYear(),
     (moment.getUTCMonth() +1),
     moment.getUTCDate(),
@@ -43,15 +54,15 @@ const position = async (astrologyObject, moment) => {
 
   const object = {
     position: {
-      dd: planet.longitude,
+      longitude: planet.longitude,
       dms: {
         degrees: degrees % 30,
         sign,
-        minutes, 
+        minutes,
         seconds
       }
     }
-  }
+  };
 
   return object;
 }
