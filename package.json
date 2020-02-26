@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_PATH=src node index.js",
-    "test": "NODE_PATH=src jest"
+    "test": "NODE_PATH=src jest",
+    "coveralls": "NODE_PATH=src jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "astrology"
@@ -13,6 +14,7 @@
   "author": "ryuphi",
   "license": "MIT",
   "devDependencies": {
+    "coveralls": "^3.0.9",
     "jest": "^25.1.0",
     "supertest": "^4.0.2"
   },

@@ -9,3 +9,4 @@ cache: npm
 
 script:
   - npm test
+  - npm run coveralls
