@@ -1,8 +1,8 @@
 const swisseph = require('swisseph');
 
-swisseph.swe_set_ephe_path(__dirname + '/../../eph');
+swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-let PLANETS = {
+const PLANETS = {
   sun: swisseph.SE_SUN,
   moon: swisseph.SE_MOON,
   mercury: swisseph.SE_MERCURY,
@@ -24,8 +24,58 @@ let PLANETS = {
 const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
 
 /**
- * @param {string} astrologyObject 
- * @param {Date} moment 
+ * @param {Date} utcDate
+ */
+const utcToJulianUt = (utcDate) => {
+  const { julianDayUT } = swisseph.swe_utc_to_jd(
+    utcDate.getUTCFullYear(),
+    utcDate.getUTCMonth() + 1,
+    utcDate.getUTCDate(),
+    utcDate.getUTCHours(),
+    utcDate.getUTCMinutes(),
+    utcDate.getUTCSeconds(),
+    swisseph.SE_GREG_CAL
+  );
+
+  return julianDayUT;
+};
+
+/**
+ * @param {Number} degrees
+ */
+const zodiacSign = (degrees) => Math.floor(degrees / 30);
+
+/**
+ * @param {Number} longitude
+ */
+const transformLongitudeToDMSPosition = (longitude) => {
+  const degrees = Math.floor(longitude);
+
+  const decimals = longitude - degrees;
+
+  const minutes = Math.floor(decimals * 60);
+
+  const seconds = Math.floor((decimals * 60 - minutes) * 60);
+
+  const sign = zodiacSign(degrees);
+
+  return {
+    degrees: degrees % 30,
+    sign,
+    minutes,
+    seconds
+  };
+};
+
+/**
+ * @param {String} astro
+ * @param {Number} julianDayUT
+ */
+const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDayUT, PLANETS[astro], FLAG);
+
+/**
+ * @param {string} astrologyObject
+ * @param {Date} moment
  */
 const position = async (astrologyObject, moment) => {
   const julianDayUT = utcToJulianUt(moment);
@@ -42,60 +92,9 @@ const position = async (astrologyObject, moment) => {
   };
 
   return object;
-}
-
-/**
- * @param {Date} utcDate 
- */
-const utcToJulianUt = utcDate => {
-  const {julianDayUT} = swisseph.swe_utc_to_jd(
-    utcDate.getUTCFullYear(),
-    (utcDate.getUTCMonth() + 1),
-    utcDate.getUTCDate(),
-    utcDate.getUTCHours(), 
-    utcDate.getUTCMinutes(),
-    utcDate.getUTCSeconds(),
-    swisseph.SE_GREG_CAL
-  )
-
-  return julianDayUT;
-}
-
-/**
- * @param {String} astro 
- * @param {Number} julianDayUT 
- */
-const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDayUT, PLANETS[astro], FLAG);
-
-/**
- * @param {Number} longitude
- */
-const transformLongitudeToDMSPosition = longitude => {
-
-  const degrees = Math.floor(longitude);
-
-  const decimals = longitude - degrees;
-
-  const minutes = Math.floor(decimals * 60);
-  
-  const seconds = Math.floor(((decimals * 60) - minutes) * 60);
-
-  const sign = zodiacSign(degrees);
-
-  return {
-    degrees: degrees % 30,
-    sign,
-    minutes,
-    seconds
-  }
-}
-
-/**
- * @param {Number} degrees
- */
-const zodiacSign = degrees => Math.floor(degrees / 30);
+};
 
 module.exports = {
   position,
   PLANETS
-}
+};

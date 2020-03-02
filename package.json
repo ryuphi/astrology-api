@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_PATH=src node index.js",
-    "test": "NODE_PATH=src jest",
-    "coveralls": "NODE_PATH=src jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "test": "ENVIRONMENT=test NODE_PATH=src jest",
+    "coveralls": "ENVIRONMENT=test NODE_PATH=src jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "lint": "./node_modules/.bin/eslint --fix src"
   },
   "keywords": [
     "astrology"
@@ -14,7 +15,11 @@
   "author": "ryuphi",
   "license": "MIT",
   "devDependencies": {
+    "cors": "^2.8.5",
     "coveralls": "^3.0.9",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
     "jest": "^25.1.0",
     "supertest": "^4.0.2"
   },
@@ -22,6 +27,7 @@
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
     "helmet": "^3.21.3",
+    "morgan": "^1.9.1",
     "swisseph": "^0.5.13"
   }
 }
