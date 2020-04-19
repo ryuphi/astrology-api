@@ -30,20 +30,4 @@ router.get('/horoscope', async (req, res) => {
   });
 });
 
-router.post('/ephemeris', async (req, res) => {
-  // resolve all promise..
-  const astros = await Promise.all(Object.keys(astrologer.PLANETS).map(async item => {
-    return {
-      name: item,
-      ...await astrologer.position(item, new Date(req.body.time))
-    };
-  }));
-
-  res.status(200).json({
-    data: {
-      astros,
-    }
-  });
-});
-
 module.exports = router;
