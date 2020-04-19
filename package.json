@@ -16,7 +16,6 @@
   "author": "ryuphi",
   "license": "MIT",
   "devDependencies": {
-    "cors": "^2.8.5",
     "coveralls": "^3.0.9",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -26,6 +25,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
     "helmet": "^3.21.3",
