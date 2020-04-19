@@ -1,4 +1,5 @@
 const swisseph = require('swisseph');
+const { houses } = require('astrologer/houses');
 
 const PLANETS = {
   sun: swisseph.SE_SUN,
@@ -92,6 +93,7 @@ const position = async (astrologyObject, moment) => {
 };
 
 module.exports = {
+  houses,
   position,
   PLANETS
 };
