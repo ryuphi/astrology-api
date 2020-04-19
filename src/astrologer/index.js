@@ -1,7 +1,5 @@
 const swisseph = require('swisseph');
 
-swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
-
 const PLANETS = {
   sun: swisseph.SE_SUN,
   moon: swisseph.SE_MOON,
@@ -55,7 +53,7 @@ const transformLongitudeToDMSPosition = (longitude) => {
 
   const minutes = Math.floor(decimals * 60);
 
-  const seconds = Math.floor((decimals * 60 - minutes) * 60);
+  const seconds = Math.round((decimals * 60 - minutes) * 60);
 
   const sign = zodiacSign(degrees);
 
@@ -78,12 +76,11 @@ const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDa
  * @param {Date} moment
  */
 const position = async (astrologyObject, moment) => {
+  swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
   const julianDayUT = utcToJulianUt(moment);
-
   const astro = getPositionOfAstro(astrologyObject, julianDayUT);
 
   const dms = transformLongitudeToDMSPosition(astro.longitude);
-
   const object = {
     position: {
       longitude: astro.longitude,

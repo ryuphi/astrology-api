@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_PATH=src node index.js",
-    "dev": "NODE_PATH=src nodemon --watch src src/server.js",
+    "dev": "NODE_PATH=src nodemon --watch src src/index.js",
     "test": "ENVIRONMENT=test NODE_PATH=src jest",
     "coveralls": "ENVIRONMENT=test NODE_PATH=src jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/eslint --fix src"
