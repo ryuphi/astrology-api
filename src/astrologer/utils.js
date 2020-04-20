@@ -50,7 +50,7 @@ const degreesToDms = (longitude) => {
  * @param {Number} degrees
  * @return {Number}
  */
-const zodiacSign = (degrees) => Math.floor(degrees / 30) % 12;
+const zodiacSign = (degrees) => (Math.floor(degrees / 30) % 12) + 1;
 
 module.exports = {
   utcToJulianUt,

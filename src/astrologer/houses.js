@@ -38,26 +38,26 @@ const houses = async (date, position) => {
   const axes = {
     asc: {
       position: degreesToDms(rawAxes.ascendant),
-      sign: zodiacSign(rawAxes.ascendant) + 1
+      sign: zodiacSign(rawAxes.ascendant)
     },
     dc: {
       position: degreesToDms(rawAxes.ascendant + 180), // this should to be equal to ascendant but with opposite sign
-      sign: zodiacSign(rawAxes.ascendant + 180) + 1
+      sign: zodiacSign(rawAxes.ascendant + 180)
     },
     mc: {
       position: degreesToDms((rawAxes.mc)),
-      sign: zodiacSign(rawAxes.mc) + 1
+      sign: zodiacSign(rawAxes.mc)
     },
     ic: {
       position: degreesToDms((rawAxes.mc + 180)), // this should to be equal to mc but with opposite sign
-      sign: zodiacSign((rawAxes.mc + 180)) + 1
+      sign: zodiacSign((rawAxes.mc + 180))
     },
   }
 
   const houses = Array.from(house).map(cuspid => {
     return {
       position: degreesToDms(cuspid),
-      sign: zodiacSign(cuspid) + 1
+      sign: zodiacSign(cuspid)
     }
   })
 

@@ -9,8 +9,8 @@ describe('Get the planets position for 1991-07-06T16:50:00-04:00', () => {
       .get('/horoscope')
       .query({
         time: '1991-07-06T16:50:00-04:00',
-        longitude: "33º24'42\"",
-        latitude: "70º'39\"59"
+        latitude: "-33.41167",
+        longitude: "-70.66647",
       })
       .send();
   })

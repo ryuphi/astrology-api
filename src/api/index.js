@@ -15,12 +15,7 @@ router.get('/horoscope', async (req, res) => {
     const position = await astrologer.position(item, date)
     planets[item] = {
       name: item,
-      position: {
-        degrees: position.position.dms.degrees,
-        minutes: position.position.dms.minutes,
-        seconds: position.position.dms.seconds,
-      },
-      sign: position.position.dms.sign + 1 // this because function return 0 to ARIES, 1 to TAURUS, etc...
+      ...position // this because function return 0 to ARIES, 1 to TAURUS, etc...
     };
   }
 
