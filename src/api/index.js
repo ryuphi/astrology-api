@@ -1,13 +1,10 @@
-const router = require('express-promise-router')();
+const astrologer = require('astrologer')
 
-const astrologer = require('astrologer');
+const Router = require('express-promise-router');
+const router = new Router();
 
 router.get('/', async (req, res) => res.status(200).json({ message: 'Welcome to Astrology api!' }));
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- */
 router.get('/horoscope', async (req, res) => {
   const date =  new Date(req.query.time);
   const planets = {};
@@ -15,7 +12,7 @@ router.get('/horoscope', async (req, res) => {
     const position = await astrologer.position(item, date)
     planets[item] = {
       name: item,
-      ...position // this because function return 0 to ARIES, 1 to TAURUS, etc...
+      ...position
     };
   }
 
