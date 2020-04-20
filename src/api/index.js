@@ -10,7 +10,6 @@ router.get('/', async (req, res) => res.status(200).json({ message: 'Welcome to 
  */
 router.get('/horoscope', async (req, res) => {
   const date =  new Date(req.query.time);
-
   const planets = {};
   for (const item of Object.keys(astrologer.PLANETS)) {
     const position = await astrologer.position(item, date)

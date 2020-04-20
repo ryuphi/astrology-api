@@ -12,8 +12,24 @@ const { utcToJulianUt, degreesToDms, zodiacSign } = require('astrologer/utils')
  */
 
 /**
+ * Dms type (Degrees, Minutes, Seconds angle(?))
+ * @typedef {Object<Number>} Dms
+ * @property {Number} degrees
+ * @property {Number} minutes
+ * @property {Number} seconds
+ */
+
+/**
+ * House type
+ * @typedef {Object} House
+ * @property {Dms} position
+ * @property {Number} sign
+ */
+
+/**
  * @param {Date} date
  * @param {Position} position
+ * @return {{axes: Object, houses: House[]}}
  */
 const houses = async (date, position) => {
   const julianDayUT = utcToJulianUt(date);
@@ -36,12 +52,18 @@ const houses = async (date, position) => {
       position: degreesToDms((rawAxes.mc + 180)), // this should to be equal to mc but with opposite sign
       sign: zodiacSign((rawAxes.mc + 180)) + 1
     },
-    // mc: houses.mc
   }
 
-  return {axes};
+  const houses = Array.from(house).map(cuspid => {
+    return {
+      position: degreesToDms(cuspid),
+      sign: zodiacSign(cuspid) + 1
+    }
+  })
+
+  return {axes, houses};
 }
 
 module.exports = {
-  houses
+  houses,
 };
