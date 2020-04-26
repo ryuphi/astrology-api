@@ -19,6 +19,8 @@ describe('Get placidus houses system cuspids for 1991-07-06T16:50:00-04:00', () 
     expect(cuspid.position.degrees).toBe(expectedDegrees)
     expect(cuspid.position.minutes).toBe(expectedMinutes)
     expect(cuspid.position.seconds).toBe(expectedSeconds)
+    expect(cuspid.position.longitude).not.toBeNull()
+    expect(cuspid.position.longitude).not.toBeUndefined()
     expect(cuspid.sign).toBe(expectedSign)
   }
 
