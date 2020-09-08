@@ -42,7 +42,8 @@ const degreesToDms = (longitude) => {
   return {
     degrees: degrees % 30,
     minutes,
-    seconds
+    seconds,
+    longitude
   };
 };
 
