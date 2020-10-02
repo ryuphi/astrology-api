@@ -2,7 +2,7 @@ const swisseph = require('swisseph');
 
 swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-const { utcToJulianUt, degreesToDms, zodiacSign } = require('astrologer/utils')
+const { utcToJulianUt, degreesToDms, zodiacSign } = require('astrologer/utils');
 
 /**
  * Position type
@@ -31,9 +31,9 @@ const { utcToJulianUt, degreesToDms, zodiacSign } = require('astrologer/utils')
  * @param {Position} position
  * @return {{axes: Object, houses: House[]}}
  */
-const houses = async (date, position) => {
+const houses = (date, position) => {
   const julianDayUT = utcToJulianUt(date);
-  const {house, ...rawAxes} = swisseph.swe_houses(julianDayUT, position.latitude, position.longitude, 'P')
+  const { house, ...rawAxes } = swisseph.swe_houses(julianDayUT, position.latitude, position.longitude, 'P');
 
   const axes = {
     asc: {
@@ -52,17 +52,16 @@ const houses = async (date, position) => {
       position: degreesToDms(rawAxes.mc + 180), // this should to be equal to mc but with opposite sign
       sign: zodiacSign((rawAxes.mc + 180))
     },
-  }
+  };
 
-  const houses = Array.from(house).map(cuspid => {
-    return {
+  return {
+    axes,
+    houses: Array.from(house).map((cuspid) => ({
       position: degreesToDms(cuspid),
       sign: zodiacSign(cuspid)
-    }
-  })
-
-  return {axes, houses};
-}
+    }))
+  };
+};
 
 module.exports = {
   houses,

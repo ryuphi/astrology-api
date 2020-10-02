@@ -17,7 +17,7 @@ router.get('/horoscope', async (req, res) => {
     return accumulator;
   }, {});
 
-  const houses = await astrologer.houses(date, {
+  const houses = astrologer.houses(date, {
     latitude: parseFloat(req.query.latitude),
     longitude: parseFloat(req.query.longitude),
   });
