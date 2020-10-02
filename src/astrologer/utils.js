@@ -1,4 +1,4 @@
-const swisseph = require('swisseph')
+const swisseph = require('swisseph');
 
 /**
  * Transform Date to julian day in universal time.
@@ -57,4 +57,4 @@ module.exports = {
   utcToJulianUt,
   degreesToDms,
   zodiacSign,
-}
+};

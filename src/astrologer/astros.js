@@ -35,7 +35,7 @@ const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDa
  * @param {string} astrologyObject
  * @param {Date} moment
  */
-const position = async (astrologyObject, moment) => {
+const position = (astrologyObject, moment) => {
   const julianDayUT = utcToJulianUt(moment);
   const astro = getPositionOfAstro(astrologyObject, julianDayUT);
 
@@ -52,4 +52,4 @@ const position = async (astrologyObject, moment) => {
 module.exports = {
   PLANETS,
   position
-}
+};
