@@ -1,4 +1,4 @@
-const astrologer = require('astrologer');
+const astrologer = require('./../../src/astrologer');
 
 describe('Calculate the planets position in a moment', () => {
   const moment = new Date('2020-02-23T01:17:13-03:00');

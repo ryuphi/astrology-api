@@ -2,35 +2,8 @@ const swisseph = require('swisseph');
 
 swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-const { utcToJulianUt, degreesToDms, zodiacSign } = require('astrologer/utils');
+const { utcToJulianUt, degreesToDms, zodiacSign } = require('./utils');
 
-/**
- * Position type
- * @typedef {Object} Position
- * @property {Number} latitude
- * @property {Number} longitude
- */
-
-/**
- * Dms type (Degrees, Minutes, Seconds angle(?))
- * @typedef {Object<Number>} Dms
- * @property {Number} degrees
- * @property {Number} minutes
- * @property {Number} seconds
- */
-
-/**
- * House type
- * @typedef {Object} House
- * @property {Dms} position
- * @property {Number} sign
- */
-
-/**
- * @param {Date} date
- * @param {Position} position
- * @return {{axes: Object, houses: House[]}}
- */
 const houses = (date, position) => {
   const julianDayUT = utcToJulianUt(date);
   const { house, ...rawAxes } = swisseph.swe_houses(julianDayUT, position.latitude, position.longitude, 'P');

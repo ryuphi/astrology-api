@@ -1,17 +1,18 @@
-const express = require("express");
-const helmet = require("helmet");
-const api = require("api");
-const cors = require("cors");
-const morgan = require("morgan");
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
+
+const api = require('./src/api');
 
 const app = express();
 
-app.set("trust proxy", "loopback");
+app.set('trust proxy', 'loopback');
 
 // cors
 app.use(cors());
 
-if (process.env.ENVIRONMENT !== "test") {
+if (process.env.ENVIRONMENT !== 'test') {
   // logger
   app.use(
     morgan(

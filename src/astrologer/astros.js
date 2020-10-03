@@ -2,7 +2,7 @@ const swisseph = require('swisseph');
 
 swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-const { utcToJulianUt, zodiacSign, degreesToDms } = require('astrologer/utils');
+const { utcToJulianUt, zodiacSign, degreesToDms } = require('./utils');
 
 const PLANETS = {
   sun: swisseph.SE_SUN,

@@ -1,5 +1,5 @@
-const astrologer = require('astrologer');
 const Router = require('express-promise-router');
+const astrologer = require('../astrologer');
 
 const router = new Router();
 
@@ -7,6 +7,7 @@ router.get('/', async (req, res) => res.status(200).json({ message: 'Welcome to 
 
 router.get('/horoscope', async (req, res) => {
   const date = new Date(req.query.time);
+  const { latitude, longitude } = req.query;
 
   const planets = Object.keys(astrologer.PLANETS).reduce((accumulator, name) => {
     const position = astrologer.position(name, date);
@@ -18,8 +19,8 @@ router.get('/horoscope', async (req, res) => {
   }, {});
 
   const houses = astrologer.houses(date, {
-    latitude: parseFloat(req.query.latitude),
-    longitude: parseFloat(req.query.longitude),
+    latitude: parseFloat(latitude),
+    longitude: parseFloat(longitude),
   });
 
   res.status(200).json({

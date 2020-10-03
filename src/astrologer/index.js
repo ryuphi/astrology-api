@@ -1,5 +1,5 @@
-const { houses } = require('astrologer/houses');
-const { PLANETS, position } = require('astrologer/astros');
+const { PLANETS, position } = require('./astros');
+const { houses } = require('./houses');
 
 module.exports = {
   houses,
