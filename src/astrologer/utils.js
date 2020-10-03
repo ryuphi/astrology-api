@@ -1,4 +1,4 @@
-const swisseph = require('swisseph');
+const swisseph = require("swisseph");
 
 const utcToJulianUt = (utcDate) => {
   const { julianDayUT } = swisseph.swe_utc_to_jd(
@@ -27,7 +27,7 @@ const degreesToDms = (longitude) => {
     degrees: degrees % 30,
     minutes,
     seconds,
-    longitude
+    longitude,
   };
 };
 

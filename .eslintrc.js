@@ -11,7 +11,7 @@ module.exports = {
     camelcase: 0,
     "no-bitwise": ["error", { allow: ["|"] }],
     "max-len": 0,
-    quotes: [2, "single", "avoid-escape"]
+    quotes: [2, "double", "avoid-escape"]
   },
   settings: {
     "import/resolver": {
