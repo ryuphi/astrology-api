@@ -8,7 +8,7 @@ describe("Calculate the planets position in a moment", () => {
     expect(sun.position.degrees).toBe(4);
     expect(sun.sign).toBe(12);
     expect(sun.position.minutes).toBe(0);
-    expect(sun.position.seconds).toBe(19);
+    expect(sun.position.seconds).toBe(18);
   });
 
   it("get the uranus position at 2020-02-23T01:17:13-03:00", async () => {
@@ -16,7 +16,7 @@ describe("Calculate the planets position in a moment", () => {
     expect(uranus.position.degrees).toBe(3);
     expect(uranus.sign).toBe(2);
     expect(uranus.position.minutes).toBe(26);
-    expect(uranus.position.seconds).toBe(6);
+    expect(uranus.position.seconds).toBe(5);
   });
 
   it("get the moon position at 2020-02-23T01:17:13-03:00", async () => {
@@ -32,6 +32,6 @@ describe("Calculate the planets position in a moment", () => {
     expect(mercury.position.degrees).toBe(9);
     expect(mercury.sign).toBe(12);
     expect(mercury.position.minutes).toBe(50);
-    expect(mercury.position.seconds).toBe(56);
+    expect(mercury.position.seconds).toBe(55);
   });
 });

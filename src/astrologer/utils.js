@@ -14,20 +14,14 @@ const utcToJulianUt = (utcDate) => {
   return julianDayUT;
 };
 
-const degreesToDms = (longitude) => {
-  const degrees = Math.floor(longitude);
-
-  const decimals = longitude - degrees;
-
-  const minutes = Math.floor(decimals * 60);
-
-  const seconds = Math.round((decimals * 60 - minutes) * 60);
+const degreesToDms = (value) => {
+  const { degree: degrees, min: minutes, second: seconds } = swisseph.swe_split_deg(value, swisseph.SE_SPLIT_DEG_ZODIACAL);
 
   return {
-    degrees: degrees % 30,
+    degrees,
     minutes,
     seconds,
-    longitude,
+    longitude: value
   };
 };
 

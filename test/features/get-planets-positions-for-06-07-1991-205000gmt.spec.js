@@ -38,11 +38,11 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   });
 
   test("get the mercury position", async () => {
-    expectAstro("mercury", 5, { degrees: 4, minutes: 28, seconds: 24 });
+    expectAstro("mercury", 5, { degrees: 4, minutes: 28, seconds: 23 });
   });
 
   test("get the venus position", async () => {
-    expectAstro("venus", 5, { degrees: 27, minutes: 7, seconds: 59 });
+    expectAstro("venus", 5, { degrees: 27, minutes: 7, seconds: 58 });
   });
 
   test("get the mars position", async () => {
@@ -50,11 +50,11 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   });
 
   test("get the jupiter position", async () => {
-    expectAstro("jupiter", 5, { degrees: 15, minutes: 32, seconds: 20 });
+    expectAstro("jupiter", 5, { degrees: 15, minutes: 32, seconds: 19 });
   });
 
   test("get the saturn position", async () => {
-    expectAstro("saturn", 11, { degrees: 4, minutes: 57, seconds: 18 });
+    expectAstro("saturn", 11, { degrees: 4, minutes: 57, seconds: 17 });
   });
 
   test("get the uranus position", async () => {
@@ -66,11 +66,11 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   });
 
   test("get the pluto position", async () => {
-    expectAstro("pluto", 8, { degrees: 17, minutes: 41, seconds: 50 });
+    expectAstro("pluto", 8, { degrees: 17, minutes: 41, seconds: 49 });
   });
 
   test("get the chiron position", async () => {
-    expectAstro("chiron", 4, { degrees: 28, minutes: 18, seconds: 1 });
+    expectAstro("chiron", 4, { degrees: 28, minutes: 18, seconds: 0 });
   });
 
   test("get the lilith position", async () => {
@@ -78,7 +78,7 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   });
 
   test("get the ceres position", async () => {
-    expectAstro("ceres", 7, { degrees: 23, minutes: 37, seconds: 23 });
+    expectAstro("ceres", 7, { degrees: 23, minutes: 37, seconds: 22 });
   });
 
   test("get the pallas position", async () => {

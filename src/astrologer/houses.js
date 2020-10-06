@@ -6,38 +6,37 @@ const { utcToJulianUt, degreesToDms, zodiacSign } = require("./utils");
 
 const houses = (date, position) => {
   const julianDayUT = utcToJulianUt(date);
-  const { house, ...rawAxes } = swisseph.swe_houses(
+
+  const withoutGeoposition = !position.latitude || !position.longitude;
+
+  if (withoutGeoposition) {
+    return {
+      axes: {
+        asc: undefined,
+        dc: undefined,
+        mc: undefined,
+        ic: undefined
+      },
+      houses: []
+    };
+  }
+
+  const { house: housesPositions } = swisseph.swe_houses(
     julianDayUT,
     position.latitude,
     position.longitude,
-    "P"
+    "P" // placidus system...
   );
 
+  const houseCollection = housesPositions.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }));
+
   const axes = {
-    asc: {
-      position: degreesToDms(rawAxes.ascendant),
-      sign: zodiacSign(rawAxes.ascendant),
-    },
-    dc: {
-      position: degreesToDms(rawAxes.ascendant + 180),
-      sign: zodiacSign(rawAxes.ascendant + 180),
-    },
-    mc: {
-      position: degreesToDms(rawAxes.mc),
-      sign: zodiacSign(rawAxes.mc),
-    },
-    ic: {
-      position: degreesToDms(rawAxes.mc + 180), // this should to be equal to mc but with opposite sign
-      sign: zodiacSign(rawAxes.mc + 180),
-    },
+    asc: houseCollection[0], dc: houseCollection[6], mc: houseCollection[9], ic: houseCollection[3]
   };
 
   return {
     axes,
-    houses: Array.from(house).map((cuspid) => ({
-      position: degreesToDms(cuspid),
-      sign: zodiacSign(cuspid),
-    })),
+    houses: houseCollection,
   };
 };
 

@@ -31,23 +31,23 @@ describe("Get placidus houses system cuspids for 1991-07-06T16:50:00-04:00", () 
   };
 
   it("/horoscope return the ASC axis (cuspid of the house I)", () => {
-    expectCuspids(response.body.data.axes.asc, 10, 2, 32, 30);
+    expectCuspids(response.body.data.axes.asc, 10, 2, 32, 29);
   });
 
   it("/horoscope return the DC axis (cuspid of the house VII)", () => {
-    expectCuspids(response.body.data.axes.dc, 4, 2, 32, 30);
+    expectCuspids(response.body.data.axes.dc, 4, 2, 32, 29);
   });
 
   it("/horoscope return the MC axis (cuspid of the house X)", () => {
-    expectCuspids(response.body.data.axes.mc, 6, 14, 58, 47);
+    expectCuspids(response.body.data.axes.mc, 6, 14, 58, 46);
   });
 
   it("/horoscope return the IC axis (cuspid of the house IV)", () => {
-    expectCuspids(response.body.data.axes.ic, 12, 14, 58, 47);
+    expectCuspids(response.body.data.axes.ic, 12, 14, 58, 46);
   });
 
   it("/horoscope response has cuspid of house I", () => {
-    expectCuspids(response.body.data.houses[0], 10, 2, 32, 30);
+    expectCuspids(response.body.data.houses[0], 10, 2, 32, 29);
   });
 
   it("/horoscope response has cuspid of house II", () => {
@@ -55,11 +55,11 @@ describe("Get placidus houses system cuspids for 1991-07-06T16:50:00-04:00", () 
   });
 
   it("/horoscope response has cuspid of house III", () => {
-    expectCuspids(response.body.data.houses[2], 11, 17, 16, 24);
+    expectCuspids(response.body.data.houses[2], 11, 17, 16, 23);
   });
 
   it("/horoscope response has cuspid of house IV", () => {
-    expectCuspids(response.body.data.houses[3], 12, 14, 58, 47);
+    expectCuspids(response.body.data.houses[3], 12, 14, 58, 46);
   });
 
   it("/horoscope response has cuspid of house V", () => {
@@ -71,7 +71,7 @@ describe("Get placidus houses system cuspids for 1991-07-06T16:50:00-04:00", () 
   });
 
   it("/horoscope response has cuspid of house VII", () => {
-    expectCuspids(response.body.data.houses[6], 4, 2, 32, 30);
+    expectCuspids(response.body.data.houses[6], 4, 2, 32, 29);
   });
 
   it("/horoscope response has cuspid of house VIII", () => {
@@ -79,11 +79,11 @@ describe("Get placidus houses system cuspids for 1991-07-06T16:50:00-04:00", () 
   });
 
   it("/horoscope response has cuspid of house IX", () => {
-    expectCuspids(response.body.data.houses[8], 5, 17, 16, 24);
+    expectCuspids(response.body.data.houses[8], 5, 17, 16, 23);
   });
 
   it("/horoscope response has cuspid of house X", () => {
-    expectCuspids(response.body.data.houses[9], 6, 14, 58, 47);
+    expectCuspids(response.body.data.houses[9], 6, 14, 58, 46);
   });
 
   it("/horoscope response has cuspid of house XI", () => {
