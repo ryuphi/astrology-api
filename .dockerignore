@@ -2,3 +2,11 @@ node_modules
 npm-debug.log
 Dockerfile
 .dockerignore
+.git
+.idea
+.node
+.github
+.editorconfig
+.eslintrc.js
+.gitignore
+.travis.yml
