@@ -1,7 +1,7 @@
 # astrology-api
 
- ![Node.js CI](https://github.com/ryuphi/astrology-api/workflows/Node.js%20CI/badge.svg?branch=master) [![Build Status](https://travis-ci.com/ryuphi/astrology-api.svg?branch=master)](https://travis-ci.com/ryuphi/astrology-api) [![Coverage Status](https://coveralls.io/repos/github/ryuphi/astrology-api/badge.svg)](https://coveralls.io/github/ryuphi/astrology-api) ![GitHub package.json version](https://img.shields.io/github/package-json/v/ryuphi/astrology-api?style=plastic)
-
+ ![Node.js CI](https://github.com/ryuphi/astrology-api/workflows/Node.js%20CI/badge.svg?branch=master) [![Build Status](https://travis-ci.com/ryuphi/astrology-api.svg?branch=master)](https://travis-ci.com/ryuphi/astrology-api) [![Coverage Status](https://coveralls.io/repos/github/ryuphi/astrology-api/badge.svg)](https://coveralls.io/github/ryuphi/astrology-api) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/ryuphi/astrology-api?label=version)
+ 
 <!-- Una api rest astrologica 🤷‍♂️ utilizando [swisseph](https://github.com/mivion/swisseph), un package que hace un binding entre nodejs y [Swiss ephemeris](https://www.astro.com/swisseph/swephinfo_e.htm). -->
 
 ## Getting started

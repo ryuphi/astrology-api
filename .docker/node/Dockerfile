@@ -1,17 +1,27 @@
-FROM node:12-alpine
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+FROM node:12-alpine as builder
+
+RUN apk add --no-cache python make g++
+
+RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
-COPY package*.json ./
+COPY . .
+
+RUN npm install --production
+
+
+FROM node:12-alpine
+
+RUN mkdir -p /home/node/app
+
+WORKDIR /home/node/app
 
 USER node
 
-RUN npm install
+COPY --chown=node:node --from=builder /home/node/app .
 
-COPY --chown=node:node . .
+EXPOSE 3000
 
-EXPOSE 8080
-
-CMD [ "node", "index.js" ]
+CMD [ "node", "index" ]
