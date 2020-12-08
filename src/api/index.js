@@ -9,17 +9,7 @@ router.get("/horoscope", async (req, res) => {
   const date = new Date(req.query.time);
   const { latitude, longitude } = req.query;
 
-  const planets = Object.keys(astrologer.PLANETS).reduce(
-    (accumulator, name) => {
-      const position = astrologer.position(name, date);
-      accumulator[name] = {
-        name,
-        ...position,
-      };
-      return accumulator;
-    },
-    {}
-  );
+  const planets = astrologer.planets(date);
 
   const houses = astrologer.houses(date, {
     latitude: parseFloat(latitude),
