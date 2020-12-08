@@ -1,5 +1,6 @@
 const { PLANETS, position } = require("./astros");
 const { houses } = require("./houses");
+const { aspect } = require("./aspects");
 
 const planets = (date) => {
   const astros = Object.keys(PLANETS)
@@ -21,5 +22,6 @@ module.exports = {
   houses,
   position,
   PLANETS,
-  planets
+  planets,
+  aspect
 };
