@@ -1,7 +1,7 @@
 # astrology-api
 
  ![Node.js CI](https://github.com/ryuphi/astrology-api/workflows/Node.js%20CI/badge.svg?branch=master) [![Build Status](https://travis-ci.com/ryuphi/astrology-api.svg?branch=master)](https://travis-ci.com/ryuphi/astrology-api) [![Coverage Status](https://coveralls.io/repos/github/ryuphi/astrology-api/badge.svg)](https://coveralls.io/github/ryuphi/astrology-api) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/ryuphi/astrology-api?label=version)
- 
+
 <!-- Una api rest astrologica 🤷‍♂️ utilizando [swisseph](https://github.com/mivion/swisseph), un package que hace un binding entre nodejs y [Swiss ephemeris](https://www.astro.com/swisseph/swephinfo_e.htm). -->
 
 ## Getting started
@@ -9,7 +9,7 @@
 ### Prerequisites
 
 * Nodejs or docker
-  
+
 ### Setup
 
 1. Clone the repo
@@ -23,7 +23,7 @@
     ##### without Docker
 
     ```bash
-    npm install 
+    npm install
     ```
 
     ```bash
@@ -33,16 +33,17 @@
     *Also you can use `npm run dev`, this option run with nodemon to watch changes.*
 
     ##### with Docker (only install)
-    
+
     ```bash
     docker-compose run api npm install
     ```
 
     ##### with Docker (install & running)
-    
+
     ```bash
     docker-compose up -d
     ```
+   Running with docker use traefik as a proxy then you may use `http://api.localhost` instead of `http://localhost:3000`
 
 ### Usage
 

@@ -1,11 +1,27 @@
 version: "3"
 
 services:
+  traefik:
+    image: traefik:v2.2
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
   api:
     image: node:12-stretch
     volumes:
       - .:/var/www/app
     working_dir: /var/www/app
     command: sh -c "npm install && npm run dev"
-    ports:
-      - 3000:3000
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.api.rule=Host(`api.localhost`)
+    expose:
+      - 3000
