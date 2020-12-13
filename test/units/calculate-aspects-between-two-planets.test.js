@@ -3,6 +3,7 @@ const astrologer = require("./../../src/astrologer");
 describe("Calculate aspects between two planets", () => {
   const planetOne = {
     name: "sun",
+    type: "luminary",
     position: {
       longitude: 10,
     },
@@ -10,6 +11,7 @@ describe("Calculate aspects between two planets", () => {
 
   const planetTwo = {
     name: "pluto",
+    type: "transpersonal",
     position: {
       longitude: 30,
     },
