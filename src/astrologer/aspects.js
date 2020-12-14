@@ -58,33 +58,47 @@ const DEFAULT_ORBS = {
   }
 };
 
-const aspect = (planetOne, planetTwo, orbs) => {
-  if (orbs === undefined) {
-    orbs = { ...DEFAULT_ORBS };
-  }
-
-  const aspects = Object.keys({ ...ASPECTS }).filter(
+const calculateAspect = (first, second, orbs) => {
+  return Object.keys({ ...ASPECTS }).filter(
     (a) => {
-      const totalOrbsForAspect = orbs[planetOne.type][a];
+      const totalOrbsForAspect = orbs[a];
       const from = parseFloat(a) - (totalOrbsForAspect / 2);
       const to = parseFloat(a) + (totalOrbsForAspect / 2);
 
-      const firstLongitude = normalizeDegrees(planetOne.position.longitude);
-      const secondLongitude = normalizeDegrees(planetTwo.position.longitude);
+      const firstLongitude = normalizeDegrees(first.position.longitude);
+      const secondLongitude = normalizeDegrees(second.position.longitude);
 
       const diff = Math.abs(firstLongitude - secondLongitude);
       return diff >= from && diff <= to;
     }
   );
+};
 
-  if (aspects.length === 0) {
+const aspect = (first, second, orbs) => {
+  if (orbs === undefined) {
+    orbs = { ...DEFAULT_ORBS };
+  }
+
+  const aspectsFirst = calculateAspect(first, second, orbs[first.type]);
+  const aspectsSecond = calculateAspect(first, second, orbs[second.type]);
+
+  if (aspectsFirst.length === 0 && aspectsSecond.length === 0) {
     return undefined;
   }
 
+  const direction = aspectsFirst.length === 1 && aspectsSecond.length === 1 ? "bidirectional" : "unidirectional";
+
   return {
-    name: ASPECTS[aspects[0]],
-    planetOne: planetOne.name,
-    planetTwo: planetTwo.name,
+    name: ASPECTS[aspectsFirst[0]],
+    direction,
+    first: {
+      name: first.name,
+      exist: aspectsFirst.length === 1
+    },
+    second: {
+      name: second.name,
+      exist: aspectsSecond.length === 1
+    },
   };
 };
 

@@ -1,4 +1,5 @@
 const astrologer = require("../../src/astrologer");
+
 describe("Calculate aspects between two planets applying orbs...", () => {
   const first = {
     position: {
@@ -83,5 +84,18 @@ describe("Calculate aspects between two planets applying orbs...", () => {
     );
 
     expect(aspect.name).toBe("conjunction");
+  });
+
+  it("When by orbs, the second planet haven't aspect... then aspect is one direction...", () => {
+    first.type = "luminary";
+    second.type = "transpersonal";
+
+    first.position.longitude = 30;
+    second.position.longitude = 34;
+
+    const aspect = astrologer.aspect(first, second, orbs);
+
+    expect(aspect.direction).toBe("unidirectional");
+    expect(aspect.second.exist).toBe(false);
   });
 });
