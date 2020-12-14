@@ -23,6 +23,25 @@ const PLANETS = {
   juno: swisseph.SE_JUNO,
 };
 
+const planetsByType = {
+  sun: "luminary",
+  moon: "luminary",
+  mercury: "personal",
+  venus: "personal",
+  mars: "personal",
+  jupiter: "social",
+  saturn: "social",
+  uranus: "transpersonal",
+  neptune: "transpersonal",
+  pluto: "transpersonal",
+  chiron: "other",
+  lilith: "other",
+  ceres: "other",
+  vesta: "other",
+  pallas: "other",
+  juno: "other",
+};
+
 const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
 
 const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDayUT, PLANETS[astro], FLAG);
@@ -44,4 +63,5 @@ const position = (astrologyObject, moment) => {
 module.exports = {
   PLANETS,
   position,
+  planetsByType
 };

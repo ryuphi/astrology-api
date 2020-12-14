@@ -1,6 +1,6 @@
-const { PLANETS, position } = require("./astros");
+const { PLANETS, position, planetsByType } = require("./astros");
 const { houses } = require("./houses");
-const { aspect } = require("./aspects");
+const { aspect, aspects } = require("./aspects");
 
 const planets = (date) => {
   const astros = Object.keys(PLANETS)
@@ -10,6 +10,7 @@ const planets = (date) => {
         accumulator[name] = {
           name,
           ...planetPosition,
+          type: planetsByType[name]
         };
         return accumulator;
       },
@@ -23,5 +24,6 @@ module.exports = {
   position,
   PLANETS,
   planets,
-  aspect
+  aspect,
+  aspects,
 };

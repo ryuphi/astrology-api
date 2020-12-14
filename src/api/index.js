@@ -10,7 +10,7 @@ router.get("/horoscope", async (req, res) => {
   const { latitude, longitude } = req.query;
 
   const planets = astrologer.planets(date);
-
+  const aspects = astrologer.aspects(planets);
   const houses = astrologer.houses(date, {
     latitude: parseFloat(latitude),
     longitude: parseFloat(longitude),
@@ -22,6 +22,7 @@ router.get("/horoscope", async (req, res) => {
         ...planets,
       },
       ...houses,
+      aspects
     },
   });
 });

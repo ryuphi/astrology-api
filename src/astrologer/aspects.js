@@ -10,6 +10,7 @@ const ASPECTS = {
   180: "opposition",
 };
 
+// HUBER ORBS... but mars and jupiter modified...
 const DEFAULT_ORBS = {
   luminary: {
     0: 10,
@@ -47,7 +48,7 @@ const DEFAULT_ORBS = {
     150: 2,
     180: 5
   },
-  others: {
+  other: {
     0: 5,
     30: 1,
     60: 2,
@@ -102,6 +103,28 @@ const aspect = (first, second, orbs) => {
   };
 };
 
+const aspects = (planets) => {
+  return Object.keys(planets).reduce((acc, planetKey) => {
+    if (acc[planetKey]) {
+      return acc;
+    }
+
+    acc[planetKey] = [];
+
+    Object.values(planets).filter((p) => p.name !== planetKey).forEach((p) => {
+      if (!acc[p.name]) {
+        const aspectsFounds = aspect(planets[planetKey], p);
+        if (aspectsFounds) {
+          acc[planetKey].push(aspectsFounds);
+        }
+      }
+    });
+
+    return acc;
+  }, {});
+};
+
 module.exports = {
-  aspect
+  aspect,
+  aspects
 };
