@@ -27,8 +27,20 @@ const degreesToDms = (value) => {
 
 const zodiacSign = (degrees) => (Math.floor(degrees / 30) % 12) + 1;
 
+const normalizeDegrees = (degress) => {
+  if (degress < -180) {
+    return degress + 360;
+  }
+  if (degress > 180) {
+    return degress - 360;
+  }
+
+  return degress;
+};
+
 module.exports = {
   utcToJulianUt,
   degreesToDms,
   zodiacSign,
+  normalizeDegrees
 };
