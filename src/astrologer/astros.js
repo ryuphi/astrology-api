@@ -60,8 +60,26 @@ const position = (astrologyObject, moment) => {
   };
 };
 
+const planets = (date) => {
+  const astros = Object.keys(PLANETS)
+    .reduce(
+      (accumulator, name) => {
+        const planetPosition = position(name, date);
+        accumulator[name] = {
+          name,
+          ...planetPosition,
+          type: planetsByType[name]
+        };
+        return accumulator;
+      },
+      {}
+    );
+  return astros;
+};
+
 module.exports = {
   PLANETS,
   position,
-  planetsByType
+  planetsByType,
+  planets,
 };
