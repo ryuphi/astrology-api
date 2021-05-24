@@ -105,10 +105,6 @@ const aspect = (first, second, orbs) => {
 
 const aspects = (planets) => {
   return Object.keys(planets).reduce((acc, planetKey) => {
-    if (acc[planetKey]) {
-      return acc;
-    }
-
     acc[planetKey] = [];
 
     Object.values(planets).filter((p) => p.name !== planetKey).forEach((p) => {
