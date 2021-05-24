@@ -7,8 +7,14 @@
     "start": "node index.js",
     "dev": "nodemon --watch src src/index.js",
     "test": "ENVIRONMENT=test jest",
+    "coverage": "ENVIRONMENT=test jest --coverage",
     "coveralls": "ENVIRONMENT=test jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/eslint --fix src"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "./app.js"
+    ]
   },
   "keywords": [
     "astrology"
