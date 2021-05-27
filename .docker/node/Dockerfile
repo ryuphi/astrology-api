@@ -1,5 +1,5 @@
 
-FROM node:12-alpine as builder
+FROM node:14-alpine as builder
 
 RUN apk add --no-cache python make g++
 
@@ -12,7 +12,7 @@ COPY . .
 RUN npm install --production
 
 
-FROM node:12-alpine
+FROM node:14-alpine
 
 RUN mkdir -p /home/node/app
 

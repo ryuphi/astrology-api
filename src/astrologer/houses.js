@@ -7,7 +7,7 @@ const { utcToJulianUt, degreesToDms, zodiacSign } = require("./utils");
 const houses = (date, position) => {
   const julianDayUT = utcToJulianUt(date);
 
-  const withoutGeoposition = !position.latitude || !position.longitude;
+  const withoutGeoposition = !position?.latitude || !position?.longitude;
 
   if (withoutGeoposition) {
     return {

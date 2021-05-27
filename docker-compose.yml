@@ -14,7 +14,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   api:
-    image: node:12-stretch
+    image: node:14-stretch
     volumes:
       - .:/var/www/app
     working_dir: /var/www/app
