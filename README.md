@@ -8,9 +8,13 @@
 
 ### Prerequisites
 
-* Nodejs or docker
+* Nodejs >= 14 (also you can use docker)
+* python (python is used for node-gyp to compile c++ swiss ephemeris library)
 
 ### Setup
+
+0. You need to install dependencies of [node-gyp](https://github.com/nodejs/node-gyp) depending on your OS. Follow the instructions to install it depending on your OS [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation)
+
 
 1. Clone the repo
 
