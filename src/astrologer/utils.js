@@ -16,6 +16,12 @@ const utcToJulianUt = (utcDate) => {
   );
 };
 
+const utcToJulianEt = (utcDate) => {
+  const julianUt = utcToJulianUt(utcDate);
+  const { delta } = swisseph.swe_deltat(julianUt);
+  return julianUt + delta;
+};
+
 const degreesToDms = (value) => {
   const position = swisseph.swe_split_deg(value, swisseph.SE_SPLIT_DEG_ZODIACAL);
   const { degree: degrees, min: minutes, second: seconds } = position;
@@ -45,5 +51,6 @@ module.exports = {
   utcToJulianUt,
   degreesToDms,
   zodiacSign,
-  normalizeDegrees
+  normalizeDegrees,
+  utcToJulianEt,
 };
