@@ -30,11 +30,11 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   };
 
   test("get the sun position", async () => {
-    expectAstro("sun", 4, { degrees: 14, minutes: 16, seconds: 58 });
+    expectAstro("sun", 4, { degrees: 14, minutes: 16, seconds: 57 });
   });
 
   test("get the moon position", async () => {
-    expectAstro("moon", 2, { degrees: 6, minutes: 18, seconds: 54 });
+    expectAstro("moon", 2, { degrees: 6, minutes: 18, seconds: 53 });
   });
 
   test("get the mercury position", async () => {
