@@ -2,7 +2,7 @@ const swisseph = require("swisseph");
 
 swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-const { utcToJulianEt, utcToJulianUt, zodiacSign, degreesToDms } = require("./utils");
+const { utcToJulianEt, zodiacSign, degreesToDms } = require("./utils");
 
 const PLANETS = {
   sun: swisseph.SE_SUN,
@@ -46,21 +46,27 @@ const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
 
 const getPositionOfAstro = (astro, julianDay) => swisseph.swe_calc(julianDay, PLANETS[astro], FLAG);
 
+const isRetrograde = (speed) => speed < 0;
+
 const position = (astrologyObject, moment) => {
   const julianDay = utcToJulianEt(moment);
-  const astro = getPositionOfAstro(astrologyObject, julianDay);
-  const dms = degreesToDms(astro.longitude);
+  const { longitude, longitudeSpeed: speed } = getPositionOfAstro(astrologyObject, julianDay);
+  const dms = degreesToDms(longitude);
+  const retrograde = isRetrograde(speed);
+
   return {
     position: {
-      longitude: astro.longitude,
+      longitude,
       ...dms,
     },
-    sign: zodiacSign(astro.longitude),
+    speed,
+    retrograde,
+    sign: zodiacSign(longitude),
   };
 };
 
 const planets = (date) => {
-  const astros = Object.keys(PLANETS)
+  return Object.keys(PLANETS)
     .reduce(
       (accumulator, name) => {
         const planetPosition = position(name, date);
@@ -73,7 +79,6 @@ const planets = (date) => {
       },
       {}
     );
-  return astros;
 };
 
 module.exports = {
