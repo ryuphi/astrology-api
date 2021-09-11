@@ -1,26 +1,47 @@
-const swisseph = require("swisseph");
+const sweph = require("sweph");
 
-swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
+sweph.set_ephe_path(`${__dirname}/../../eph`);
+
+const {
+  SE_SUN,
+  SE_MOON,
+  SE_MEAN_APOG,
+  SE_MERCURY,
+  SE_VENUS,
+  SE_MARS,
+  SE_JUPITER,
+  SE_SATURN,
+  SE_URANUS,
+  SE_NEPTUNE,
+  SE_PLUTO,
+  SE_VESTA,
+  SE_JUNO,
+  SE_CHIRON,
+  SE_CERES,
+  SE_PALLAS,
+  SEFLG_SWIEPH,
+  SEFLG_SPEED,
+} = sweph.constants;
 
 const { utcToJulianEt, zodiacSign, degreesToDms } = require("./utils");
 
 const PLANETS = {
-  sun: swisseph.SE_SUN,
-  moon: swisseph.SE_MOON,
-  mercury: swisseph.SE_MERCURY,
-  venus: swisseph.SE_VENUS,
-  mars: swisseph.SE_MARS,
-  jupiter: swisseph.SE_JUPITER,
-  saturn: swisseph.SE_SATURN,
-  uranus: swisseph.SE_URANUS,
-  neptune: swisseph.SE_NEPTUNE,
-  pluto: swisseph.SE_PLUTO,
-  chiron: swisseph.SE_CHIRON,
-  lilith: swisseph.SE_MEAN_APOG,
-  ceres: swisseph.SE_CERES,
-  vesta: swisseph.SE_VESTA,
-  pallas: swisseph.SE_PALLAS,
-  juno: swisseph.SE_JUNO,
+  sun: SE_SUN,
+  moon: SE_MOON,
+  mercury: SE_MERCURY,
+  venus: SE_VENUS,
+  mars: SE_MARS,
+  jupiter: SE_JUPITER,
+  saturn: SE_SATURN,
+  uranus: SE_URANUS,
+  neptune: SE_NEPTUNE,
+  pluto: SE_PLUTO,
+  chiron: SE_CHIRON,
+  lilith: SE_MEAN_APOG,
+  ceres: SE_CERES,
+  vesta: SE_VESTA,
+  pallas: SE_PALLAS,
+  juno: SE_JUNO,
 };
 
 const planetsByType = {
@@ -42,15 +63,17 @@ const planetsByType = {
   juno: "other",
 };
 
-const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
+const FLAG = SEFLG_SPEED | SEFLG_SWIEPH;
 
-const getPositionOfAstro = (astro, julianDay) => swisseph.swe_calc(julianDay, PLANETS[astro], FLAG);
+const getPositionOfAstro = (astro, julianDay) => sweph.calc(julianDay, PLANETS[astro], FLAG);
 
 const isRetrograde = (speed) => speed < 0;
 
 const position = (astrologyObject, moment) => {
   const julianDay = utcToJulianEt(moment);
-  const { longitude, longitudeSpeed: speed } = getPositionOfAstro(astrologyObject, julianDay);
+  const { data } = getPositionOfAstro(astrologyObject, julianDay);
+  const longitude = data[0];
+  const speed = data[3];
   const dms = degreesToDms(longitude);
   const retrograde = isRetrograde(speed);
 
