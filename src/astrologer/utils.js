@@ -27,7 +27,6 @@ const utcToJulianEt = (utcDate) => {
 const degreesToDms = (value) => {
   const position = sweph.split_deg(value, sweph.constants.SE_SPLIT_DEG_ZODIACAL);
   const { degree: degrees, minute: minutes, second: seconds } = position;
-  console.log(position)
   return {
     degrees,
     minutes,

@@ -15,10 +15,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: npm test
+    - run: npm run coverage # test with coverage
       env:
         CI: true
-        
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     needs: tests
     runs-on: ubuntu-latest
