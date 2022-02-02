@@ -1,13 +1,13 @@
-const sweph = require("sweph");
+const swisseph = require("swisseph");
 
-sweph.set_ephe_path(`${__dirname}/../../eph`);
+swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
 const { utcToJulianUt, degreesToDms, zodiacSign } = require("./utils");
 
 const houses = (date, position) => {
   const julianDayUT = utcToJulianUt(date);
 
-  const withoutGeoposition = !(position?.latitude && position?.longitude);
+  const withoutGeoposition = !position?.latitude || !position?.longitude;
 
   if (withoutGeoposition) {
     return {
@@ -21,12 +21,12 @@ const houses = (date, position) => {
     };
   }
 
-  const { houses: housesPositions } = sweph.houses(
+  const { house: housesPositions } = swisseph.swe_houses(
     julianDayUT,
     position.latitude,
     position.longitude,
     "P" // placidus system...
-  ).data;
+  );
 
   const houseCollection = housesPositions.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }));
 

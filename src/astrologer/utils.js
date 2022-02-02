@@ -1,6 +1,4 @@
-const sweph = require("sweph");
-
-sweph.set_ephe_path(`${__dirname}/../../eph`);
+const swisseph = require("swisseph");
 
 const utcToJulianUt = (utcDate) => {
   const milliSecondsInSeconds = utcDate.getUTCMilliseconds() / 1000;
@@ -9,25 +7,25 @@ const utcToJulianUt = (utcDate) => {
 
   const hours = utcDate.getUTCHours() + minutesInHours;
 
-  return sweph.julday(
+  return swisseph.swe_julday(
     utcDate.getUTCFullYear(),
     utcDate.getUTCMonth() + 1,
     utcDate.getUTCDate(),
     hours,
-    sweph.constants.SE_GREG_CAL
+    swisseph.SE_GREG_CAL
   );
 };
 
 const utcToJulianEt = (utcDate) => {
   const julianUt = utcToJulianUt(utcDate);
-  const delta = sweph.deltat(julianUt);
+  const { delta } = swisseph.swe_deltat(julianUt);
   return julianUt + delta;
 };
 
 const degreesToDms = (value) => {
-  const position = sweph.split_deg(value, sweph.constants.SE_SPLIT_DEG_ZODIACAL);
-  const { degree: degrees, minute: minutes, second: seconds } = position;
-  console.log(position)
+  const position = swisseph.swe_split_deg(value, swisseph.SE_SPLIT_DEG_ZODIACAL);
+  const { degree: degrees, min: minutes, second: seconds } = position;
+
   return {
     degrees,
     minutes,
@@ -38,15 +36,15 @@ const degreesToDms = (value) => {
 
 const zodiacSign = (degrees) => (Math.floor(degrees / 30) % 12) + 1;
 
-const normalizeDegrees = (degrees) => {
-  if (degrees < -180) {
-    return degrees + 360;
+const normalizeDegrees = (degress) => {
+  if (degress < -180) {
+    return degress + 360;
   }
-  if (degrees > 180) {
-    return degrees - 360;
+  if (degress > 180) {
+    return degress - 360;
   }
 
-  return degrees;
+  return degress;
 };
 
 module.exports = {
