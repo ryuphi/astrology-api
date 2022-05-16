@@ -1,6 +1,8 @@
-const sweph = require("sweph");
+const sweph = require('sweph')
+const { utcToJulianEt, zodiacSign, degreesToDms } = require('./utils')
+const path = require('path')
 
-sweph.set_ephe_path(`${__dirname}/../../eph`);
+sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
 const {
   SE_SUN,
@@ -20,10 +22,8 @@ const {
   SE_CERES,
   SE_PALLAS,
   SEFLG_SWIEPH,
-  SEFLG_SPEED,
-} = sweph.constants;
-
-const { utcToJulianEt, zodiacSign, degreesToDms } = require("./utils");
+  SEFLG_SPEED
+} = sweph.constants
 
 const PLANETS = {
   sun: SE_SUN,
@@ -41,72 +41,72 @@ const PLANETS = {
   ceres: SE_CERES,
   vesta: SE_VESTA,
   pallas: SE_PALLAS,
-  juno: SE_JUNO,
-};
+  juno: SE_JUNO
+}
 
 const planetsByType = {
-  sun: "luminary",
-  moon: "luminary",
-  mercury: "personal",
-  venus: "personal",
-  mars: "personal",
-  jupiter: "social",
-  saturn: "social",
-  uranus: "transpersonal",
-  neptune: "transpersonal",
-  pluto: "transpersonal",
-  chiron: "other",
-  lilith: "other",
-  ceres: "other",
-  vesta: "other",
-  pallas: "other",
-  juno: "other",
-};
+  sun: 'luminary',
+  moon: 'luminary',
+  mercury: 'personal',
+  venus: 'personal',
+  mars: 'personal',
+  jupiter: 'social',
+  saturn: 'social',
+  uranus: 'transpersonal',
+  neptune: 'transpersonal',
+  pluto: 'transpersonal',
+  chiron: 'other',
+  lilith: 'other',
+  ceres: 'other',
+  vesta: 'other',
+  pallas: 'other',
+  juno: 'other'
+}
 
-const FLAG = SEFLG_SPEED | SEFLG_SWIEPH;
+const FLAG = SEFLG_SPEED | SEFLG_SWIEPH
 
-const getPositionOfAstro = (astro, julianDay) => sweph.calc(julianDay, PLANETS[astro], FLAG);
+const getPositionOfAstro = (astro, julianDay) => sweph.calc(julianDay, PLANETS[astro], FLAG)
 
-const isRetrograde = (speed) => speed < 0;
+const isRetrograde = (speed) => speed < 0
 
 const position = (astrologyObject, moment) => {
-  const julianDay = utcToJulianEt(moment);
-  const { data } = getPositionOfAstro(astrologyObject, julianDay);
-  const longitude = data[0];
-  const speed = data[3];
-  const dms = degreesToDms(longitude);
-  const retrograde = isRetrograde(speed);
+  const julianDay = utcToJulianEt(moment)
+  const { data } = getPositionOfAstro(astrologyObject, julianDay)
+  const longitude = data[0]
+  const speed = data[3]
+  const dms = degreesToDms(longitude)
+  const retrograde = isRetrograde(speed)
 
   return {
     position: {
       longitude,
-      ...dms,
+      ...dms
     },
     speed,
     retrograde,
-    sign: zodiacSign(longitude),
-  };
-};
+    sign: zodiacSign(longitude)
+  }
+}
 
 const planets = (date) => {
   return Object.keys(PLANETS)
     .reduce(
       (accumulator, name) => {
-        const planetPosition = position(name, date);
+        const planetPosition = position(name, date)
         accumulator[name] = {
           name,
           ...planetPosition,
           type: planetsByType[name]
-        };
-        return accumulator;
+        }
+        return accumulator
       },
       {}
-    );
-};
+    )
+}
 
 module.exports = {
   PLANETS,
   position,
   planetsByType,
-  planets,
-};
+  planets
+}
