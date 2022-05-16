@@ -34,19 +34,6 @@
 
     *Also you can use `npm run dev`, this option run with nodemon to watch changes.*
 
-    ##### with Docker (only install)
-
-    ```bash
-    docker-compose run api npm install
-    ```
-
-    ##### with Docker (install & running)
-
-    ```bash
-    docker-compose up -d
-    ```
-   Running with docker use traefik as a proxy then you may use `http://api.localhost` instead of `http://localhost:3000`
-
 ### Usage
 
 Example: Get the horoscope for date `1993-08-06`, time `16:50:00` and timezone `-04:00` at Santiago, Chile (latitude `-33.41167` and longitude `-70.66647`).
