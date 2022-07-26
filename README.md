@@ -36,7 +36,7 @@
 
 ### Usage
 
-Example: Get the horoscope for date `1993-08-06`, time `16:50:00` and timezone `-04:00` at Santiago, Chile (latitude `-33.41167` and longitude `-70.66647`).
+Example: Get the horoscope for date `1993-08-06`, time `16:50:00` with timezone `-04:00` at Santiago, Chile (latitude `-33.41167` and longitude `-70.66647`) using Placidus houses system.
 
 Fist, you need to transform the date & time to ISO8601, for this example `1993-08-06T16:50:00-04:00`.
 
@@ -49,6 +49,8 @@ If you don't want to escape the date and time, you can always send it to UTC ðŸ™
 
 In UTC: `1993-08-06T20:50:00Z`
 
+Then, you need to select the house system from the houses system table.. in this case for the placidus system you need to send the `P` value in the `houseSystem` query param.
+
 Now you can send this...
 
 ##### Using cURL
@@ -56,11 +58,43 @@ Now you can send this...
 ```bash
 # escaped
 curl --request GET \
-  --url 'http://localhost:3000/horoscope?time=1993-08-06T16%3A50%3A00-04%3A00&latitude=-33.41167&longitude=-70.66647'
+  --url 'http://localhost:3000/horoscope?time=1993-08-06T16%3A50%3A00-04%3A00&latitude=-33.41167&longitude=-70.66647&houseSystem=P'
 ```
 
 ```bash
 # in utc
 curl --request GET \
-  --url 'http://localhost:3000/horoscope?time=1993-08-06T20:50:00Z&latitude=-33.41167&longitude=-70.66647'
+  --url 'http://localhost:3000/horoscope?time=1993-08-06T20:50:00Z&latitude=-33.41167&longitude=-70.66647&houseSystem=P'
 ```
+
+
+### House system table
+
+The values from each house system is extracted from sweph source code
+
+| Code value | House system |
+|--- | ---
+| A | equal | 
+| B | Alcabitius |
+| C | Campanus |
+| D | equal (MC) |
+| E | equal |
+| F | Carter poli-equ. |
+| G | Gauquelin sectors |
+| H | horizon/azimut |
+| I | Sunshine |
+| i | Sunshine/alt. |
+| K | Koch |
+| L | Pullen SD |
+| M | Morinus |
+| N | equal/1=Aries |
+| O | Porphyry |
+| Q | Pullen SR |
+| R | Regiomontanus |
+| S | Sripati |
+| T | Polich/Page |
+| U | Krusinski-Pisa-Goelzer |
+| V | equal/Vehlow |
+| W | equal/ whole sign |
+| X | axial rotation system/Meridian houses |
+| Y | APC houses |
