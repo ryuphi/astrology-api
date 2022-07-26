@@ -1,17 +1,17 @@
-const astrologer = require("../../src/astrologer");
+const astrologer = require('../../src/astrologer')
 
-describe("Calculate aspects between two planets applying orbs...", () => {
+describe('Calculate aspects between two planets applying orbs...', () => {
   const first = {
     position: {
       longitude: 30
     }
-  };
+  }
 
   const second = {
     position: {
       longitude: 34
     }
-  };
+  }
 
   const orbs = {
     luminary: {
@@ -59,43 +59,43 @@ describe("Calculate aspects between two planets applying orbs...", () => {
       150: 2,
       180: 5
     }
-  };
+  }
 
-  it("using orb you can get a conjunction", () => {
-    first.type = "luminary";
-    second.type = "luminary";
+  it('using orb you can get a conjunction', () => {
+    first.type = 'luminary'
+    second.type = 'luminary'
 
     const aspect = astrologer.aspect(
       first,
       second,
       orbs
-    );
+    )
 
-    expect(aspect.name).toBe("conjunction");
-  });
+    expect(aspect.name).toBe('conjunction')
+  })
 
-  it("using defaults orbs", () => {
-    first.type = "luminary";
-    second.type = "luminary";
+  it('using defaults orbs', () => {
+    first.type = 'luminary'
+    second.type = 'luminary'
 
     const aspect = astrologer.aspect(
       first,
       second
-    );
+    )
 
-    expect(aspect.name).toBe("conjunction");
-  });
+    expect(aspect.name).toBe('conjunction')
+  })
 
   it("When by orbs, the second planet haven't aspect... then aspect is one direction...", () => {
-    first.type = "luminary";
-    second.type = "transpersonal";
+    first.type = 'luminary'
+    second.type = 'transpersonal'
 
-    first.position.longitude = 30;
-    second.position.longitude = 34;
+    first.position.longitude = 30
+    second.position.longitude = 34
 
-    const aspect = astrologer.aspect(first, second, orbs);
+    const aspect = astrologer.aspect(first, second, orbs)
 
-    expect(aspect.direction).toBe("unidirectional");
-    expect(aspect.second.exist).toBe(false);
-  });
-});
+    expect(aspect.direction).toBe('unidirectional')
+    expect(aspect.second.exist).toBe(false)
+  })
+})
