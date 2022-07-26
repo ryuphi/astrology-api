@@ -5,7 +5,7 @@ sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
 const { utcToJulianUt, degreesToDms, zodiacSign } = require('./utils')
 
-const houses = (date, position) => {
+const houses = (date, position, houseSystem = 'P') => {
   const julianDayUT = utcToJulianUt(date)
 
   const withoutGeoposition = !(position?.latitude && position?.longitude)
@@ -26,7 +26,7 @@ const houses = (date, position) => {
     julianDayUT,
     position.latitude,
     position.longitude,
-    'P' // placidus system...
+    houseSystem // placidus system...
   ).data
 
   const houseCollection = housesPositions.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }))
