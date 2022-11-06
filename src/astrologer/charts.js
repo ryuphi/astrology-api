@@ -1,9 +1,13 @@
 const { houses } = require('./houses')
 const { aspects } = require('./aspects')
 const { planets } = require('./astros')
+const { SE_SIDM_LAHIRI } = require('./swephConstants')
 
-const natalChart = (date, latitude, longitude, houseSystem = 'P') => {
-  const astrosList = planets(date)
+// Default value for yearSystem is =  SideReal 'S' 
+// Default value for ayanamsha is Lahiri = SE_SIDM_LAHIRI
+
+const natalChart = (date, latitude, longitude, houseSystem = 'P', yearSystem = 'S', ayanamsha = SE_SIDM_LAHIRI) => {
+  const astrosList = planets(date, yearSystem, ayanamsha)
   const aspectsList = aspects(astrosList)
   const housesList = houses(
     date,
@@ -11,7 +15,9 @@ const natalChart = (date, latitude, longitude, houseSystem = 'P') => {
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude)
     },
-    houseSystem
+    houseSystem,
+    yearSystem,
+    ayanamsha,
   )
 
   return {

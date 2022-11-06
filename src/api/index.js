@@ -7,9 +7,9 @@ router.get('/', async (req, res) => res.status(200).json({ message: 'Welcome to 
 
 router.get('/horoscope', async (req, res) => {
   const date = new Date(req.query.time)
-  const { latitude, longitude, houseSystem } = req.query
+  const { latitude, longitude, houseSystem, yearSystem, ayanamsa } = req.query
 
-  const chart = astrologer.natalChart(date, latitude, longitude, houseSystem)
+  const chart = astrologer.natalChart(date, latitude, longitude, houseSystem, yearSystem, ayanamsa)
 
   res.status(200).json({
     data: chart
