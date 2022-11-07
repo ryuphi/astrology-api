@@ -11,7 +11,8 @@ describe('Get Koch houses system cuspids for 1991-07-06T16:50:00-04:00', () => {
         time: '1991-07-06T16:50:00-04:00',
         latitude: '-33.41167',
         longitude: '-70.66647',
-        houseSystem: 'K' // Koch system...
+        houseSystem: 'K', // Koch system... 
+        
       })
       .send()
   })
