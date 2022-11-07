@@ -1,5 +1,5 @@
 const sweph = require('sweph')
-const { utcToJulianEt, zodiacSign, degreesToDms } = require('./utils')
+const { utcToJulianEt, zodiacSign, degreesToDms, nakshatra } = require('./utils')
 const path = require('path')
 var yearSystem 
 var ayanamsha
@@ -108,7 +108,8 @@ const position = (astrologyObject, moment) => {
     },
     speed,
     retrograde,
-    sign: zodiacSign(longitude)
+    sign: zodiacSign(longitude),
+    nakshatra: nakshatra(longitude),
   }
 }
 

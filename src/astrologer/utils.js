@@ -1,5 +1,6 @@
 const sweph = require('sweph')
 const path = require('path')
+const getNakshatras = require('./nakshatra')
 
 sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
@@ -38,6 +39,8 @@ const degreesToDms = (value) => {
 
 const zodiacSign = (degrees) => (Math.floor(degrees / 30) % 12) + 1
 
+const nakshatra = (degrees) => getNakshatras(degrees)
+
 const normalizeDegrees = (degrees) => {
   if (degrees < -180) {
     return degrees + 360
@@ -54,5 +57,6 @@ module.exports = {
   degreesToDms,
   zodiacSign,
   normalizeDegrees,
-  utcToJulianEt
+  utcToJulianEt,
+  nakshatra
 }

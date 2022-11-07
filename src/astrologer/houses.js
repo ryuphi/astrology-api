@@ -5,7 +5,7 @@ const { SE_SIDM_LAHIRI } = require('./swephConstants')
 sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
 
-const { utcToJulianUt, degreesToDms, zodiacSign } = require('./utils')
+const { utcToJulianUt, degreesToDms, zodiacSign, nakshatra } = require('./utils')
 
 // Condition For SideReal Chart Positions 
 // setting ayanamsha and sidereal flag
@@ -41,7 +41,7 @@ const houses = (date, position, houseSystem = 'P', yearSystem = 'S', ayanamsha =
     houseSystem // placidus system...
   ).data
    
-  const houseCollection = houses.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }))
+  const houseCollection = houses.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid), nakshatra: nakshatra(cuspid) }))
   let i = 0
   const axes = {
                 asc: axesPosition(points[i++]), // Ascendant
@@ -62,7 +62,7 @@ const houses = (date, position, houseSystem = 'P', yearSystem = 'S', ayanamsha =
 }
 
 var axesPosition = (cuspid) => {
-  return { position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }
+  return { position: degreesToDms(cuspid), sign: zodiacSign(cuspid), nakshatra: nakshatra(cuspid) }
 }
 
 module.exports = {
