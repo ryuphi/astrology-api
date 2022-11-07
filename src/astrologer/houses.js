@@ -9,8 +9,8 @@ const { utcToJulianUt, degreesToDms, zodiacSign, nakshatra } = require('./utils'
 
 // Condition For SideReal Chart Positions 
 // setting ayanamsha and sidereal flag
-const houses = (date, position, houseSystem = 'P', yearSystem = 'S', ayanamsha = SE_SIDM_LAHIRI ) => {
-  const julianDayUT = utcToJulianUt(date)
+const houses = (date, position, houseSystem = 'P', yearSystem = 'T', ayanamsha = SE_SIDM_LAHIRI ) => {
+const julianDayUT = utcToJulianUt(date)
 
   const withoutGeoposition = !(position?.latitude && position?.longitude)
   var FLAG = SEFLG_SPEED | SEFLG_SWIEPH
@@ -42,7 +42,10 @@ const houses = (date, position, houseSystem = 'P', yearSystem = 'S', ayanamsha =
   ).data
    
   const houseCollection = houses.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid), nakshatra: nakshatra(cuspid) }))
-  let i = 0
+  
+  const axes = { asc: houseCollection[0], 
+   dc: houseCollection[6], mc: houseCollection[9], ic: houseCollection[3] }
+ /* let i = 0
   const axes = {
                 asc: axesPosition(points[i++]), // Ascendant
                 mc: axesPosition(points[i++]),  // Midheaven
@@ -53,17 +56,18 @@ const houses = (date, position, houseSystem = 'P', yearSystem = 'S', ayanamsha =
                 coasc2: axesPosition(points[i++]),  // Co-Ascendant (Michael Munkasey)
                 polasc: axesPosition(points[i++]),  // Polar Ascendant (Michael Munkasey)
                 }
-  
+  */
 
   return {
     axes,
     houses: houseCollection
   }
 }
-
+/*
 var axesPosition = (cuspid) => {
   return { position: degreesToDms(cuspid), sign: zodiacSign(cuspid), nakshatra: nakshatra(cuspid) }
 }
+*/
 
 module.exports = {
   houses

@@ -82,7 +82,7 @@ const getPositionOfAstro = (astro, julianDay) =>
     sweph.set_sid_mode(Number(ayanamsha), 0, 0)
     FLAG = SEFLG_SIDEREAL
   }
-  return sweph.calc_ut(julianDay, PLANETS[astro], FLAG)
+  return sweph.calc(julianDay, PLANETS[astro], FLAG)
 }
 
 const isRetrograde = (speed) => speed < 0

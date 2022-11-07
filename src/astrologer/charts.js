@@ -6,7 +6,7 @@ const { SE_SIDM_LAHIRI } = require('./swephConstants')
 // Default value for yearSystem is =  SideReal 'S' 
 // Default value for ayanamsha is Lahiri = SE_SIDM_LAHIRI
 
-const natalChart = (date, latitude, longitude, houseSystem = 'P', yearSystem = 'S', ayanamsha = SE_SIDM_LAHIRI) => {
+const natalChart = (date, latitude, longitude, houseSystem = 'P', yearSystem = 'T', ayanamsha = SE_SIDM_LAHIRI) => {
   const astrosList = planets(date, yearSystem, ayanamsha)
   const aspectsList = aspects(astrosList)
   const housesList = houses(
