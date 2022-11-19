@@ -1,9 +1,8 @@
 const sweph = require('sweph')
-const { utcToJulianEt, zodiacSign, degreesToDms } = require('./utils')
+const { utcToJulianEt, zodiacSign, degreesToDms, nakshatra } = require('./utils')
 const path = require('path')
-
-sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
-
+var yearSystem 
+var ayanamsha
 const {
   SE_SUN,
   SE_MOON,
@@ -21,9 +20,14 @@ const {
   SE_CHIRON,
   SE_CERES,
   SE_PALLAS,
+  SEFLG_SIDEREAL,
+  SEFLG_SPEED,
   SEFLG_SWIEPH,
-  SEFLG_SPEED
-} = sweph.constants
+  SE_MEAN_NODE
+} = require('./swephConstants')
+
+sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
+
 
 const PLANETS = {
   sun: SE_SUN,
@@ -41,7 +45,9 @@ const PLANETS = {
   ceres: SE_CERES,
   vesta: SE_VESTA,
   pallas: SE_PALLAS,
-  juno: SE_JUNO
+  juno: SE_JUNO,
+  rahu: SE_MEAN_NODE,
+  ketu: SE_MEAN_NODE
 }
 
 const planetsByType = {
@@ -60,19 +66,37 @@ const planetsByType = {
   ceres: 'other',
   vesta: 'other',
   pallas: 'other',
-  juno: 'other'
+  juno: 'other',
+  rahu: 'personal',  // Lunar North Node 
+  ketu: 'personal'   // Lunar South Node
 }
 
-const FLAG = SEFLG_SPEED | SEFLG_SWIEPH
+var FLAG = SEFLG_SPEED | SEFLG_SWIEPH
 
-const getPositionOfAstro = (astro, julianDay) => sweph.calc(julianDay, PLANETS[astro], FLAG)
+
+const getPositionOfAstro = (astro, julianDay) =>
+{ 
+  // Condition For SideReal Chart Positions 
+  // setting ayanamsha and sidereal flag
+  if (yearSystem == 'S') {
+    sweph.set_sid_mode(Number(ayanamsha), 0, 0)
+    FLAG = SEFLG_SIDEREAL
+  }
+  return sweph.calc(julianDay, PLANETS[astro], FLAG)
+}
 
 const isRetrograde = (speed) => speed < 0
 
 const position = (astrologyObject, moment) => {
   const julianDay = utcToJulianEt(moment)
   const { data } = getPositionOfAstro(astrologyObject, julianDay)
-  const longitude = data[0]
+  var longitude = data[0]
+
+  //To calculate South Node (Ketu) opposite to North Node
+  if(astrologyObject == 'ketu') {
+    longitude = ( longitude + 180 ) % 360
+  }
+  
   const speed = data[3]
   const dms = degreesToDms(longitude)
   const retrograde = isRetrograde(speed)
@@ -84,11 +108,15 @@ const position = (astrologyObject, moment) => {
     },
     speed,
     retrograde,
-    sign: zodiacSign(longitude)
+    sign: zodiacSign(longitude),
+    nakshatra: nakshatra(longitude),
   }
 }
 
-const planets = (date) => {
+const planets = (date, yearSystemValue, aynamshaValue) => {
+  // sets the YearSystem and Ayanamsha values
+  yearSystem = yearSystemValue
+  ayanamsha =  aynamshaValue
   return Object.keys(PLANETS)
     .reduce(
       (accumulator, name) => {

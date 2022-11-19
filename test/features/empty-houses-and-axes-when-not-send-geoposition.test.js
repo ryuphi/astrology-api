@@ -8,7 +8,7 @@ describe('Get houses empty and axes as undefined when geolocation is not send', 
     response = await request(app)
       .get('/horoscope')
       .query({
-        time: '1991-07-06T16:50:00-04:00'
+        time: '1991-07-06T16:50:00-04:00',
       })
       .send()
   })
@@ -36,4 +36,4 @@ describe('Get houses empty and axes as undefined when geolocation is not send', 
   it('/horoscope return the houses elements empty', () => {
     expect(response.body.data.houses.length).toBe(0)
   })
-})
+}) 

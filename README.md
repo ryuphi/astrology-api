@@ -51,6 +51,11 @@ In UTC: `1993-08-06T20:50:00Z`
 
 Then, you need to select the house system from the houses system table.. in this case for the placidus system you need to send the `P` value in the `houseSystem` query param.
 
+For SideReal Year System You have to send `S`  for Tropical `T` in the `yearSystem` query param.
+ 
+ also Send Ayanamsha value as per given below table suppose `"Lahiri"  SE_SIDM_LAHIRI` ayanamsha 
+ you want to used the add `1` as `ayanamsa` query param.
+
 Now you can send this...
 
 ##### Using cURL
@@ -58,13 +63,13 @@ Now you can send this...
 ```bash
 # escaped
 curl --request GET \
-  --url 'http://localhost:3000/horoscope?time=1993-08-06T16%3A50%3A00-04%3A00&latitude=-33.41167&longitude=-70.66647&houseSystem=P'
+  --url 'http://localhost:3000/horoscope?time=1993-08-06T16%3A50%3A00-04%3A00&latitude=-33.41167&longitude=-70.66647&houseSystem=P&yearSystem=S&ayanamsa=1'
 ```
 
 ```bash
 # in utc
 curl --request GET \
-  --url 'http://localhost:3000/horoscope?time=1993-08-06T20:50:00Z&latitude=-33.41167&longitude=-70.66647&houseSystem=P'
+  --url 'http://localhost:3000/horoscope?time=1993-08-06T20:50:00Z&latitude=-33.41167&longitude=-70.66647&houseSystem=P&yearSystem=S&ayanamsa=1'
 ```
 
 
@@ -98,3 +103,58 @@ The values from each house system is extracted from sweph source code
 | W | equal/ whole sign |
 | X | axial rotation system/Meridian houses |
 | Y | APC houses |
+
+
+### Ayanamsha Value table
+
+The values from each Ayanamsha is extracted from sweph source code
+
+| Ayanamsha Name       | Ayanamsha value    | Ayanamsha constant     |
+|--------------------- | -----------------  |--------------------
+|"Fagan/Bradley”,      |                 0  | SE_SIDM_FAGAN_BRADLEY  |
+|"Lahiri”,             |                 1  | SE_SIDM_LAHIRI         |
+|"De Luce”,            |                 2  | SE_SIDM_DELUCE         |
+|"Raman”,              |                 3  | SE_SIDM_RAMAN          |
+|"Usha/Shashi”,        |                 4  | SE_SIDM_USHASHASHI     |
+|"Krishnamurti”,       |                 5  | SE_SIDM_KRISHNAMURTI
+|"Djwhal Khul”,        |                 6  | SE_SIDM_DJWHAL_KHUL
+|"Yukteshwar”,         |                 7   | SE_SIDM_YUKTESHWAR
+"J.N. Bhasin”,         |                 8   | SE_SIDM_JN_BHASIN
+"Babylonian/Kugler 1”,  |                9   | SE_SIDM_BABYL_KUGLER1
+"Babylonian/Kugler 2”,  |                10  | SE_SIDM_BABYL_KUGLER2
+"Babylonian/Kugler 3”,   |               11  | SE_SIDM_BABYL_KUGLER3
+"Babylonian/Huber”,       |              12  | SE_SIDM_BABYL_HUBER
+"Babylonian/Eta Piscium”,   |            13  | SE_SIDM_BABYL_ETPSC
+"Babylonian/Aldebaran = 15 Tau”,  |      14  | SE_SIDM_ALDEBARAN_15TAU
+"Hipparchos”,                 |          15  | SE_SIDM_HIPPARCHOS
+"Sassanian”,                  |          16  | SE_SIDM_SASSANIAN
+"Galact. Center = 0 Sag”,     |          17  | SE_SIDM_GALCENT_0SAG
+"J2000”,                      |          18  | SE_SIDM_J2000
+"J1900”,                      |          19  | SE_SIDM_J1900
+"B1950”,                      |          20  | SE_SIDM_B1950
+"Suryasiddhanta”,             |          21  | SE_SIDM_SURYASIDDHANTA
+"Suryasiddhanta, mean Sun”,   |          22  | SE_SIDM_SURYASIDDHANTA_MSUN
+"Aryabhata”,                  |          23  | SE_SIDM_ARYABHATA
+"Aryabhata, mean Sun”,        |          24  | SE_SIDM_ARYABHATA_MSUN
+"SS Revati”,                  |          25  | SE_SIDM_SS_REVATI
+"SS Citra”,                   |          26  | SE_SIDM_SS_CITRA
+"True Citra”,                 |          27  | SE_SIDM_TRUE_CITRA
+"True Revati”,                |          28  | SE_SIDM_TRUE_REVATI
+"True Pushya (PVRN Rao) ”,    |          29  | SE_SIDM_TRUE_PUSHYA
+"Galactic Center (Gil Brand) ”, |        30  | SE_SIDM_GALCENT_RGBRAND
+"Galactic Equator (IAU1958) ”,  |        31  | SE_SIDM_GALEQU_IAU1958
+"Galactic Equator”,             |       32   | SE_SIDM_GALEQU_TRUE
+"Galactic Equator mid-Mula”,    |        33  | SE_SIDM_GALEQU_MULA
+"Skydram (Mardyks) ”,           |        34  | SE_SIDM_GALALIGN_MARDYKS
+"True Mula (Chandra Hari) ”,    |        35  | SE_SIDM_TRUE_MULA
+"Dhruva/Gal.Center/Mula (Wilhelm) ”, |   36  | SE_SIDM_GALCENT_MULA_WILHELM
+"Aryabhata 522”,                     |   37  | SE_SIDM_ARYABHATA_522
+"Babylonian/Britton”,                |   38  | SE_SIDM_BABYL_BRITTON
+"\"Vedic\"/Sheoran                   |   39  | SE_SIDM_TRUE_SHEORAN
+"Cochrane (Gal.Center = 0 Cap)"      |   40  | SE_SIDM_GALCENT_COCHRANE
+"Galactic Equator (Fiorenza)",       |   41  | SE_SIDM_GALEQU_FIORENZA
+"Vettius Valens",                    |   42  | SE_SIDM_VALENS_MOON
+"Lahiri 1940",                       |   43  | SE_SIDM_LAHIRI_1940
+"Lahiri VP285",                      |   44  | SE_SIDM_LAHIRI_VP285
+"Krishnamurti-Senthilathiban",       |   45  | SE_SIDM_KRISHNAMURTI_VP291
+"Lahiri ICRC",                       |   46  | SE_SIDM_LAHIRI_ICRC

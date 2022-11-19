@@ -42,6 +42,7 @@
     "express-promise-router": "^3.0.3",
     "helmet": "^3.21.3",
     "morgan": "^1.9.1",
+    "node-geocoder": "^4.2.0",
     "sweph": "^2.10.0-5"
   }
 }
