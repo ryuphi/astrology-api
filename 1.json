@@ -1,0 +1,967 @@
+{
+    "data": {
+        "astros": {
+            "sun": {
+                "name": "sun",
+                "position": {
+                    "longitude": 340.9716706221829,
+                    "degrees": 10,
+                    "minutes": 58,
+                    "seconds": 18
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 12,
+                "nakshatra": {
+                    "name": "Uttara Bhadrapada",
+                    "pada": 3
+                },
+                "type": "luminary"
+            },
+            "moon": {
+                "name": "moon",
+                "position": {
+                    "longitude": 193.0454787167021,
+                    "degrees": 13,
+                    "minutes": 2,
+                    "seconds": 43
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 7,
+                "nakshatra": {
+                    "name": "Swati",
+                    "pada": 2
+                },
+                "type": "luminary"
+            },
+            "mercury": {
+                "name": "mercury",
+                "position": {
+                    "longitude": 331.08102678247786,
+                    "degrees": 1,
+                    "minutes": 4,
+                    "seconds": 51
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 12,
+                "nakshatra": {
+                    "name": "Purva Bhadrapada",
+                    "pada": 4
+                },
+                "type": "personal"
+            },
+            "venus": {
+                "name": "venus",
+                "position": {
+                    "longitude": 338.2714030984113,
+                    "degrees": 8,
+                    "minutes": 16,
+                    "seconds": 17
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 12,
+                "nakshatra": {
+                    "name": "Uttara Bhadrapada",
+                    "pada": 2
+                },
+                "type": "personal"
+            },
+            "mars": {
+                "name": "mars",
+                "position": {
+                    "longitude": 44.837572204557105,
+                    "degrees": 14,
+                    "minutes": 50,
+                    "seconds": 15
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 2,
+                "nakshatra": {
+                    "name": "Rohini",
+                    "pada": 2
+                },
+                "type": "personal"
+            },
+            "jupiter": {
+                "name": "jupiter",
+                "position": {
+                    "longitude": 38.56674233083174,
+                    "degrees": 8,
+                    "minutes": 34,
+                    "seconds": 0
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 2,
+                "nakshatra": {
+                    "name": "Krittika",
+                    "pada": 4
+                },
+                "type": "social"
+            },
+            "saturn": {
+                "name": "saturn",
+                "position": {
+                    "longitude": 259.55334721418666,
+                    "degrees": 19,
+                    "minutes": 33,
+                    "seconds": 12
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 9,
+                "nakshatra": {
+                    "name": "Purva Ashadha",
+                    "pada": 2
+                },
+                "type": "social"
+            },
+            "uranus": {
+                "name": "uranus",
+                "position": {
+                    "longitude": 251.52802368413438,
+                    "degrees": 11,
+                    "minutes": 31,
+                    "seconds": 40
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 9,
+                "nakshatra": {
+                    "name": "Mula",
+                    "pada": 4
+                },
+                "type": "transpersonal"
+            },
+            "neptune": {
+                "name": "neptune",
+                "position": {
+                    "longitude": 258.5690101483659,
+                    "degrees": 18,
+                    "minutes": 34,
+                    "seconds": 8
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 9,
+                "nakshatra": {
+                    "name": "Purva Ashadha",
+                    "pada": 2
+                },
+                "type": "transpersonal"
+            },
+            "pluto": {
+                "name": "pluto",
+                "position": {
+                    "longitude": 201.0982557130891,
+                    "degrees": 21,
+                    "minutes": 5,
+                    "seconds": 53
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 7,
+                "nakshatra": {
+                    "name": "Vishaka",
+                    "pada": 1
+                },
+                "type": "transpersonal"
+            },
+            "chiron": {
+                "name": "chiron",
+                "position": {
+                    "longitude": 67.83512652147589,
+                    "degrees": 7,
+                    "minutes": 50,
+                    "seconds": 6
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 3,
+                "nakshatra": {
+                    "name": "Ardra",
+                    "pada": 1
+                },
+                "type": "other"
+            },
+            "lilith": {
+                "name": "lilith",
+                "position": {
+                    "longitude": 161.2666788411198,
+                    "degrees": 11,
+                    "minutes": 16,
+                    "seconds": 0
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 6,
+                "nakshatra": {
+                    "name": "Hasta",
+                    "pada": 1
+                },
+                "type": "other"
+            },
+            "ceres": {
+                "name": "ceres",
+                "position": {
+                    "longitude": 0.6305656724047676,
+                    "degrees": 0,
+                    "minutes": 37,
+                    "seconds": 50
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 1,
+                "nakshatra": {
+                    "name": "Ashwini",
+                    "pada": 1
+                },
+                "type": "other"
+            },
+            "vesta": {
+                "name": "vesta",
+                "position": {
+                    "longitude": 248.38803029786786,
+                    "degrees": 8,
+                    "minutes": 23,
+                    "seconds": 16
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 9,
+                "nakshatra": {
+                    "name": "Mula",
+                    "pada": 3
+                },
+                "type": "other"
+            },
+            "pallas": {
+                "name": "pallas",
+                "position": {
+                    "longitude": 322.67213594250154,
+                    "degrees": 22,
+                    "minutes": 40,
+                    "seconds": 19
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 11,
+                "nakshatra": {
+                    "name": "Purva Bhadrapada",
+                    "pada": 1
+                },
+                "type": "other"
+            },
+            "juno": {
+                "name": "juno",
+                "position": {
+                    "longitude": 122.3595135694967,
+                    "degrees": 2,
+                    "minutes": 21,
+                    "seconds": 34
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 5,
+                "nakshatra": {
+                    "name": "Magha",
+                    "pada": 1
+                },
+                "type": "other"
+            },
+            "rahu": {
+                "name": "rahu",
+                "position": {
+                    "longitude": 309.66519605072966,
+                    "degrees": 9,
+                    "minutes": 39,
+                    "seconds": 54
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 11,
+                "nakshatra": {
+                    "name": "Shatabhishak",
+                    "pada": 1
+                },
+                "type": "personal"
+            },
+            "ketu": {
+                "name": "ketu",
+                "position": {
+                    "longitude": 129.66519605072966,
+                    "degrees": 9,
+                    "minutes": 39,
+                    "seconds": 54
+                },
+                "speed": 0,
+                "retrograde": false,
+                "sign": 5,
+                "nakshatra": {
+                    "name": "Magha",
+                    "pada": 3
+                },
+                "type": "personal"
+            }
+        },
+        "axes": {
+            "asc": {
+                "position": {
+                    "degrees": 8,
+                    "minutes": 48,
+                    "seconds": 7,
+                    "longitude": 98.80208155440693
+                },
+                "sign": 4,
+                "nakshatra": {
+                    "name": "Pushya",
+                    "pada": 2
+                }
+            },
+            "mc": {
+                "position": {
+                    "degrees": 6,
+                    "minutes": 18,
+                    "seconds": 14,
+                    "longitude": 6.304023874554858
+                },
+                "sign": 1,
+                "nakshatra": {
+                    "name": "Ashwini",
+                    "pada": 2
+                }
+            },
+            "dc": {
+                "position": {
+                    "degrees": 8,
+                    "minutes": 48,
+                    "seconds": 7,
+                    "longitude": 278.8020815544069
+                },
+                "sign": 10,
+                "nakshatra": {
+                    "name": "Uttara Ashadha",
+                    "pada": 4
+                }
+            },
+            "ic": {
+                "position": {
+                    "degrees": 6,
+                    "minutes": 18,
+                    "seconds": 14,
+                    "longitude": 186.30402387455487
+                },
+                "sign": 7,
+                "nakshatra": {
+                    "name": "Chitra",
+                    "pada": 4
+                }
+            },
+            "armc": {
+                "position": {
+                    "degrees": 27,
+                    "minutes": 55,
+                    "seconds": 19,
+                    "longitude": 27.921960107824532
+                },
+                "sign": 1,
+                "nakshatra": {
+                    "name": "Krittika",
+                    "pada": 1
+                }
+            },
+            "vertex": {
+                "position": {
+                    "degrees": 25,
+                    "minutes": 44,
+                    "seconds": 59,
+                    "longitude": 205.74992139315898
+                },
+                "sign": 7,
+                "nakshatra": {
+                    "name": "Vishaka",
+                    "pada": 2
+                }
+            },
+            "equasc": {
+                "position": {
+                    "degrees": 2,
+                    "minutes": 13,
+                    "seconds": 16,
+                    "longitude": 92.22121630815109
+                },
+                "sign": 4,
+                "nakshatra": {
+                    "name": "Punarvasu",
+                    "pada": 4
+                }
+            },
+            "coasc1": {
+                "position": {
+                    "degrees": 24,
+                    "minutes": 49,
+                    "seconds": 2,
+                    "longitude": 84.81749944744077
+                },
+                "sign": 3,
+                "nakshatra": {
+                    "name": "Punarvasu",
+                    "pada": 2
+                }
+            },
+            "coasc2": {
+                "position": {
+                    "degrees": 7,
+                    "minutes": 36,
+                    "seconds": 27,
+                    "longitude": 127.6076176249474
+                },
+                "sign": 5,
+                "nakshatra": {
+                    "name": "Magha",
+                    "pada": 3
+                }
+            },
+            "polasc": {
+                "position": {
+                    "degrees": 24,
+                    "minutes": 49,
+                    "seconds": 2,
+                    "longitude": 264.81749944744075
+                },
+                "sign": 9,
+                "nakshatra": {
+                    "name": "Purva Ashadha",
+                    "pada": 4
+                }
+            }
+        },
+        "houses": [
+            {
+                "position": {
+                    "degrees": 8,
+                    "minutes": 48,
+                    "seconds": 7,
+                    "longitude": 98.80208155440693
+                },
+                "sign": 4,
+                "nakshatra": {
+                    "name": "Pushya",
+                    "pada": 2
+                }
+            },
+            {
+                "position": {
+                    "degrees": 4,
+                    "minutes": 47,
+                    "seconds": 8,
+                    "longitude": 124.78568651824439
+                },
+                "sign": 5,
+                "nakshatra": {
+                    "name": "Magha",
+                    "pada": 2
+                }
+            },
+            {
+                "position": {
+                    "degrees": 4,
+                    "minutes": 7,
+                    "seconds": 52,
+                    "longitude": 154.13129681561625
+                },
+                "sign": 6,
+                "nakshatra": {
+                    "name": "Uttara Phalguni",
+                    "pada": 3
+                }
+            },
+            {
+                "position": {
+                    "degrees": 6,
+                    "minutes": 18,
+                    "seconds": 14,
+                    "longitude": 186.30402387455487
+                },
+                "sign": 7,
+                "nakshatra": {
+                    "name": "Chitra",
+                    "pada": 4
+                }
+            },
+            {
+                "position": {
+                    "degrees": 8,
+                    "minutes": 42,
+                    "seconds": 35,
+                    "longitude": 218.70987058608887
+                },
+                "sign": 8,
+                "nakshatra": {
+                    "name": "Anuradha",
+                    "pada": 2
+                }
+            },
+            {
+                "position": {
+                    "degrees": 9,
+                    "minutes": 29,
+                    "seconds": 39,
+                    "longitude": 249.49431381672164
+                },
+                "sign": 9,
+                "nakshatra": {
+                    "name": "Mula",
+                    "pada": 3
+                }
+            },
+            {
+                "position": {
+                    "degrees": 8,
+                    "minutes": 48,
+                    "seconds": 7,
+                    "longitude": 278.8020815544069
+                },
+                "sign": 10,
+                "nakshatra": {
+                    "name": "Uttara Ashadha",
+                    "pada": 4
+                }
+            },
+            {
+                "position": {
+                    "degrees": 4,
+                    "minutes": 47,
+                    "seconds": 8,
+                    "longitude": 304.78568651824435
+                },
+                "sign": 11,
+                "nakshatra": {
+                    "name": "Dhanishta",
+                    "pada": 4
+                }
+            },
+            {
+                "position": {
+                    "degrees": 4,
+                    "minutes": 7,
+                    "seconds": 52,
+                    "longitude": 334.1312968156162
+                },
+                "sign": 12,
+                "nakshatra": {
+                    "name": "Uttara Bhadrapada",
+                    "pada": 1
+                }
+            },
+            {
+                "position": {
+                    "degrees": 6,
+                    "minutes": 18,
+                    "seconds": 14,
+                    "longitude": 6.304023874554858
+                },
+                "sign": 1,
+                "nakshatra": {
+                    "name": "Ashwini",
+                    "pada": 2
+                }
+            },
+            {
+                "position": {
+                    "degrees": 8,
+                    "minutes": 42,
+                    "seconds": 35,
+                    "longitude": 38.709870586088854
+                },
+                "sign": 2,
+                "nakshatra": {
+                    "name": "Krittika",
+                    "pada": 4
+                }
+            },
+            {
+                "position": {
+                    "degrees": 9,
+                    "minutes": 29,
+                    "seconds": 39,
+                    "longitude": 69.4943138167216
+                },
+                "sign": 3,
+                "nakshatra": {
+                    "name": "Ardra",
+                    "pada": 1
+                }
+            }
+        ],
+        "aspects": {
+            "sun": [
+                {
+                    "name": "quincunx",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "moon",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "conjunction",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "venus",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "sextile",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "jupiter",
+                        "exist": false
+                    }
+                },
+                {
+                    "name": "quadrature",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "uranus",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "opposition",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "lilith",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "quadrature",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "vesta",
+                        "exist": false
+                    }
+                },
+                {
+                    "name": "semisextile",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "rahu",
+                        "exist": false
+                    }
+                },
+                {
+                    "name": "quincunx",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "sun",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "ketu",
+                        "exist": false
+                    }
+                }
+            ],
+            "moon": [
+                {
+                    "name": "sextile",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "moon",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "uranus",
+                        "exist": false
+                    }
+                },
+                {
+                    "name": "trigone",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "moon",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "rahu",
+                        "exist": false
+                    }
+                }
+            ],
+            "mercury": [
+                {
+                    "name": "semisextile",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "mercury",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "ceres",
+                        "exist": true
+                    }
+                }
+            ],
+            "venus": [
+                {
+                    "name": "sextile",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "venus",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "jupiter",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "quadrature",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "venus",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "chiron",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "opposition",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "venus",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "lilith",
+                        "exist": false
+                    }
+                },
+                {
+                    "name": "quadrature",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "venus",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "vesta",
+                        "exist": true
+                    }
+                }
+            ],
+            "mars": [],
+            "jupiter": [
+                {
+                    "name": "semisextile",
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "jupiter",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "chiron",
+                        "exist": false
+                    }
+                },
+                {
+                    "name": "quincunx",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "jupiter",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "vesta",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "quadrature",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "jupiter",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "rahu",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "quadrature",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "jupiter",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "ketu",
+                        "exist": true
+                    }
+                }
+            ],
+            "saturn": [
+                {
+                    "name": "conjunction",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "saturn",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "neptune",
+                        "exist": true
+                    }
+                }
+            ],
+            "uranus": [
+                {
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "uranus",
+                        "exist": false
+                    },
+                    "second": {
+                        "name": "rahu",
+                        "exist": true
+                    }
+                }
+            ],
+            "neptune": [],
+            "pluto": [
+                {
+                    "name": "trigone",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "pluto",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "pallas",
+                        "exist": true
+                    }
+                }
+            ],
+            "chiron": [
+                {
+                    "name": "opposition",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "chiron",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "vesta",
+                        "exist": true
+                    }
+                },
+                {
+                    "name": "trigone",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "chiron",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "rahu",
+                        "exist": true
+                    }
+                },
+                {
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "chiron",
+                        "exist": false
+                    },
+                    "second": {
+                        "name": "ketu",
+                        "exist": true
+                    }
+                }
+            ],
+            "lilith": [],
+            "ceres": [
+                {
+                    "name": "trigone",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "ceres",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "juno",
+                        "exist": true
+                    }
+                }
+            ],
+            "vesta": [
+                {
+                    "direction": "unidirectional",
+                    "first": {
+                        "name": "vesta",
+                        "exist": false
+                    },
+                    "second": {
+                        "name": "rahu",
+                        "exist": true
+                    }
+                }
+            ],
+            "pallas": [],
+            "juno": [],
+            "rahu": [
+                {
+                    "name": "opposition",
+                    "direction": "bidirectional",
+                    "first": {
+                        "name": "rahu",
+                        "exist": true
+                    },
+                    "second": {
+                        "name": "ketu",
+                        "exist": true
+                    }
+                }
+            ],
+            "ketu": []
+        }
+    }
+}
