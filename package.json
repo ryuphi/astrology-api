@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --watch src src/index.js",
-    "test": "jest",
+    "test": "ENVIRONMENT=test jest",
     "coverage": "ENVIRONMENT=test jest --coverage",
     "coveralls": "ENVIRONMENT=test jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/eslint --fix src"
@@ -42,6 +42,7 @@
     "express-promise-router": "^3.0.3",
     "helmet": "^3.21.3",
     "morgan": "^1.9.1",
+    "node-geocoder": "^4.2.0",
     "sweph": "^2.10.0-5"
   }
 }

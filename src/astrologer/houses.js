@@ -17,12 +17,18 @@ const julianDayUT = utcToJulianUt(date)
 
   if (withoutGeoposition) {
     return {
-      axes: {
-        asc: undefined,
+      axes:{
+        asc: undefined, // Ascendant
+        mc: undefined,  // Midheaven
         dc: undefined,
-        mc: undefined,
-        ic: undefined
-      },
+        ic: undefined,
+        armc: undefined,  // Right Ascension of the midheaven
+        vertex: undefined,  // Vertex
+        equasc: undefined,  // Equatorial Ascendant
+        coasc1: undefined,  // Co-Ascendant (Walter Koch)
+        coasc2: undefined,  // Co-Ascendant (Michael Munkasey)
+        polasc: undefined,  // Polar Ascendant (Michael Munkasey),
+        },
       houses: []
     }
   }
@@ -33,7 +39,7 @@ const julianDayUT = utcToJulianUt(date)
     FLAG = SEFLG_SIDEREAL
   }
 
-  const { houses, points } = sweph.houses_ex(
+   const { houses, points } = sweph.houses_ex(
     julianDayUT,
     FLAG,
     position.latitude,
@@ -43,31 +49,30 @@ const julianDayUT = utcToJulianUt(date)
    
   const houseCollection = houses.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid), nakshatra: nakshatra(cuspid) }))
   
-  const axes = { asc: houseCollection[0], 
-   dc: houseCollection[6], mc: houseCollection[9], ic: houseCollection[3] }
- /* let i = 0
+  let i = 0
   const axes = {
                 asc: axesPosition(points[i++]), // Ascendant
                 mc: axesPosition(points[i++]),  // Midheaven
+                dc: houseCollection[6],
+                ic: houseCollection[3],
                 armc: axesPosition(points[i++]),  // Right Ascension of the midheaven
                 vertex: axesPosition(points[i++]),  // Vertex
                 equasc: axesPosition(points[i++]),  // Equatorial Ascendant
                 coasc1: axesPosition(points[i++]),  // Co-Ascendant (Walter Koch)
                 coasc2: axesPosition(points[i++]),  // Co-Ascendant (Michael Munkasey)
-                polasc: axesPosition(points[i++]),  // Polar Ascendant (Michael Munkasey)
+                polasc: axesPosition(points[i++]),  // Polar Ascendant (Michael Munkasey),
                 }
-  */
+ 
 
   return {
     axes,
     houses: houseCollection
   }
 }
-/*
+
 var axesPosition = (cuspid) => {
   return { position: degreesToDms(cuspid), sign: zodiacSign(cuspid), nakshatra: nakshatra(cuspid) }
 }
-*/
 
 module.exports = {
   houses

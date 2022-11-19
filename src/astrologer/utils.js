@@ -1,6 +1,7 @@
 const sweph = require('sweph')
 const path = require('path')
 const getNakshatras = require('./nakshatra')
+const {SE_GREG_CAL} = require('./swephConstants')
 
 sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
@@ -16,7 +17,7 @@ const utcToJulianUt = (utcDate) => {
     utcDate.getUTCMonth() + 1,
     utcDate.getUTCDate(),
     hours,
-    sweph.constants.SE_GREG_CAL
+    SE_GREG_CAL
   )
 }
 

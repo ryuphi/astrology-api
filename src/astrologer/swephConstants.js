@@ -23,7 +23,8 @@ module.exports =  {
     SEFLG_SPEED,
     SEFLG_SWIEPH,
     SE_NODBIT_MEAN,
-    SE_MEAN_NODE
+    SE_MEAN_NODE,
+    SE_GREG_CAL
   } = sweph.constants
 
 
