@@ -63,8 +63,8 @@ const calculateAspect = (first, second, orbs) => {
   return Object.keys({ ...ASPECTS }).filter(
     (a) => {
       const totalOrbsForAspect = orbs[a]
-      const from = parseFloat(a) - (totalOrbsForAspect / 2)
-      const to = parseFloat(a) + (totalOrbsForAspect / 2)
+      const from = parseFloat(a) - totalOrbsForAspect
+      const to = parseFloat(a) + totalOrbsForAspect
 
       const firstLongitude = normalizeDegrees(first.position.longitude)
       const secondLongitude = normalizeDegrees(second.position.longitude)
