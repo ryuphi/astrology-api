@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('./../../app')
+const app = require('./../../app').default
 
 describe('Get the planets position for 1991-07-06T16:50:00-04:00', () => {
   let response

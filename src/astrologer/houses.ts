@@ -1,11 +1,10 @@
-const sweph = require('sweph')
-const path = require('path')
+import sweph from 'sweph'
+import path from 'path'
+import { utcToJulianUt, degreesToDms, zodiacSign } from './utils'
 
 sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
-const { utcToJulianUt, degreesToDms, zodiacSign } = require('./utils')
-
-const houses = (date, position, houseSystem = 'P') => {
+const houses = (date: Date, position: any, houseSystem = 'P') => {
   const julianDayUT = utcToJulianUt(date)
 
   const withoutGeoposition = !(position?.latitude && position?.longitude)
@@ -27,12 +26,15 @@ const houses = (date, position, houseSystem = 'P') => {
     position.latitude,
     position.longitude,
     houseSystem // placidus system...
-  ).data
+  ).data as any
 
-  const houseCollection = housesPositions.map((cuspid) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }))
+  const houseCollection = housesPositions.map((cuspid: number) => ({ position: degreesToDms(cuspid), sign: zodiacSign(cuspid) }))
 
   const axes = {
-    asc: houseCollection[0], dc: houseCollection[6], mc: houseCollection[9], ic: houseCollection[3]
+    asc: houseCollection[0],
+    dc: houseCollection[6],
+    mc: houseCollection[9],
+    ic: houseCollection[3]
   }
 
   return {
@@ -41,6 +43,4 @@ const houses = (date, position, houseSystem = 'P') => {
   }
 }
 
-module.exports = {
-  houses
-}
+export { houses }

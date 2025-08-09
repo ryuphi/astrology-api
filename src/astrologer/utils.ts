@@ -1,9 +1,9 @@
-const sweph = require('sweph')
-const path = require('path')
+import sweph from 'sweph'
+import path from 'path'
 
 sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
-const utcToJulianUt = (utcDate) => {
+const utcToJulianUt = (utcDate: Date) => {
   const milliSecondsInSeconds = utcDate.getUTCMilliseconds() / 1000
   const secondsInMinutes = (utcDate.getUTCSeconds() + milliSecondsInSeconds) / 60
   const minutesInHours = (utcDate.getUTCMinutes() + secondsInMinutes) / 60
@@ -19,14 +19,14 @@ const utcToJulianUt = (utcDate) => {
   )
 }
 
-const utcToJulianEt = (utcDate) => {
+const utcToJulianEt = (utcDate: Date) => {
   const julianUt = utcToJulianUt(utcDate)
-  const delta = sweph.deltat(julianUt)
+  const delta = (sweph as any).deltat(julianUt)
   return julianUt + delta
 }
 
-const degreesToDms = (value) => {
-  const position = sweph.split_deg(value, sweph.constants.SE_SPLIT_DEG_ZODIACAL)
+const degreesToDms = (value: number) => {
+  const position = sweph.split_deg(value, (sweph as any).constants.SE_SPLIT_DEG_ZODIACAL)
   const { degree: degrees, minute: minutes, second: seconds } = position
   return {
     degrees,
@@ -36,9 +36,9 @@ const degreesToDms = (value) => {
   }
 }
 
-const zodiacSign = (degrees) => (Math.floor(degrees / 30) % 12) + 1
+const zodiacSign = (degrees: number) => (Math.floor(degrees / 30) % 12) + 1
 
-const normalizeDegrees = (degrees) => {
+const normalizeDegrees = (degrees: number) => {
   if (degrees < -180) {
     return degrees + 360
   }
@@ -49,10 +49,4 @@ const normalizeDegrees = (degrees) => {
   return degrees
 }
 
-module.exports = {
-  utcToJulianUt,
-  degreesToDms,
-  zodiacSign,
-  normalizeDegrees,
-  utcToJulianEt
-}
+export { utcToJulianUt, degreesToDms, zodiacSign, normalizeDegrees, utcToJulianEt }

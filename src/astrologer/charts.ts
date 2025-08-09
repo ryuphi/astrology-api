@@ -1,8 +1,13 @@
-const { houses } = require('./houses')
-const { aspects } = require('./aspects')
-const { planets } = require('./astros')
+import { houses } from './houses'
+import { aspects } from './aspects'
+import { planets } from './astros'
 
-const natalChart = (date, latitude, longitude, houseSystem = 'P') => {
+const natalChart = (
+  date: Date,
+  latitude: string,
+  longitude: string,
+  houseSystem = 'P'
+) => {
   const astrosList = planets(date)
   const aspectsList = aspects(astrosList)
   const housesList = houses(
@@ -23,6 +28,4 @@ const natalChart = (date, latitude, longitude, houseSystem = 'P') => {
   }
 }
 
-module.exports = {
-  natalChart
-}
+export { natalChart }

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const http = require('http')
-const app = require('./app')
+import http from 'http'
+import app from './app'
 
 /**
  * Create HTTP server.
@@ -10,7 +10,7 @@ const server = http.createServer(app)
 /**
  * Normalize a port into a number, string, or false.
  */
-const normalizePort = (val) => {
+const normalizePort = (val: string): number | string | false => {
   const numericPort = parseInt(val, 10)
 
   // eslint-disable-next-line no-restricted-globals
@@ -36,7 +36,7 @@ app.set('port', port)
 /**
  * Event listener for HTTP server "error" event.
  */
-const onError = (error) => {
+const onError = (error: NodeJS.ErrnoException) => {
   if (error.syscall !== 'listen') {
     throw error
   }
@@ -63,7 +63,7 @@ const onError = (error) => {
  */
 const onListening = () => {
   const addr = server.address()
-  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${(addr as any).port}`
   console.log(`Listening on ${bind}`)
 }
 

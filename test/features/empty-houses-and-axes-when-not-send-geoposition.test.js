@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('./../../app')
+const app = require('./../../app').default
 
 describe('Get houses empty and axes as undefined when geolocation is not send', () => {
   let response

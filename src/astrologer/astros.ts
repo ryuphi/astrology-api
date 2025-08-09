@@ -1,6 +1,6 @@
-const sweph = require('sweph')
-const { utcToJulianEt, zodiacSign, degreesToDms } = require('./utils')
-const path = require('path')
+import sweph from 'sweph'
+import { utcToJulianEt, zodiacSign, degreesToDms } from './utils'
+import path from 'path'
 
 sweph.set_ephe_path(path.join(__dirname, '/../../eph'))
 
@@ -65,13 +65,13 @@ const planetsByType = {
 
 const FLAG = SEFLG_SPEED | SEFLG_SWIEPH
 
-const getPositionOfAstro = (astro, julianDay) => sweph.calc(julianDay, PLANETS[astro], FLAG)
+const getPositionOfAstro = (astro: string, julianDay: number) => sweph.calc(julianDay, PLANETS[astro], FLAG)
 
-const isRetrograde = (speed) => speed < 0
+const isRetrograde = (speed: number) => speed < 0
 
-const position = (astrologyObject, moment) => {
+const position = (astrologyObject: string, moment: Date) => {
   const julianDay = utcToJulianEt(moment)
-  const { data } = getPositionOfAstro(astrologyObject, julianDay)
+  const { data } = getPositionOfAstro(astrologyObject, julianDay) as any
   const longitude = data[0]
   const speed = data[3]
   const dms = degreesToDms(longitude)
@@ -88,25 +88,16 @@ const position = (astrologyObject, moment) => {
   }
 }
 
-const planets = (date) => {
-  return Object.keys(PLANETS)
-    .reduce(
-      (accumulator, name) => {
-        const planetPosition = position(name, date)
-        accumulator[name] = {
-          name,
-          ...planetPosition,
-          type: planetsByType[name]
-        }
-        return accumulator
-      },
-      {}
-    )
+const planets = (date: Date) => {
+  return Object.keys(PLANETS).reduce((accumulator: any, name) => {
+    const planetPosition = position(name, date)
+    accumulator[name] = {
+      name,
+      ...planetPosition,
+      type: (planetsByType as any)[name]
+    }
+    return accumulator
+  }, {})
 }
 
-module.exports = {
-  PLANETS,
-  position,
-  planetsByType,
-  planets
-}
+export { PLANETS, position, planetsByType, planets }

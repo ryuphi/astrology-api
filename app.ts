@@ -1,7 +1,8 @@
-const express = require('express')
-const helmet = require('helmet')
-const cors = require('cors')
-const morgan = require('morgan')
+import express from 'express'
+import helmet from 'helmet'
+import cors from 'cors'
+import morgan from 'morgan'
+import api from './src/api'
 
 const app = express()
 
@@ -44,8 +45,8 @@ app.use(
 
 app.use(express.json())
 
-const api = require('./src/api')
-
 app.use(api)
 
+export default app
+// support CommonJS default import
 module.exports = app
