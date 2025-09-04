@@ -1,39 +1,30 @@
-# ---- Stage 1: build (tem toolchain)
-FROM cgr.dev/chainguard/node:20-dev AS build
-# cgr.dev/chainguard/* usa Wolfi (apk)
-# Pacotes para node-gyp e nativos
+# Dockerfile — single-stage para evitar erro de tag no runtime
+FROM cgr.dev/chainguard/node:20-dev
+
+# Wolfi (apk). Toolchain para node-gyp e libs nativas
 RUN apk add --no-cache build-base python3 git
 
 WORKDIR /app
 
-# Instala dependências primeiro para aproveitar cache
+ENV NODE_ENV=production \
+    TZ=America/Sao_Paulo \
+    PORT=3000
+
+# Instala deps primeiro (aproveita cache)
 COPY package*.json ./
-# Em produção, geralmente omitimos dev deps; ajuste se precisar compilar algo que está em devDependencies
 RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm i --omit=dev; fi
 
-# Copia o restante do código
+# Copia o restante do código (inclui pasta eph/ do Swiss Ephemeris)
 COPY . .
 
-# (Opcional) se você gera build/artefatos, rode aqui (ex.: npm run build)
+# Se tiver build de assets/typescript, rode aqui:
 # RUN npm run build
 
-# ---- Stage 2: runtime (sem toolchain, mais leve e seguro)
-FROM cgr.dev/chainguard/node:20
-
-ENV NODE_ENV=production \
-    TZ=America/Sao_Paulo
-
-WORKDIR /app
-
-# Copia tudo do build (node_modules já compilados)
-COPY --from=build /app /app
-
-# Ajuste a porta conforme seu app
 EXPOSE 3000
 
-# Healthcheck simples na raiz (mude a rota se tiver /health)
+# Healthcheck simples na raiz (ajuste para /health se existir)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-  CMD node -e "require('http').get('http://127.0.0.1:3000/', r=>{if(r.statusCode<400)process.exit(0);process.exit(1)}).on('error',()=>process.exit(1))"
+  CMD node -e "require('http').get('http://127.0.0.1:'+(process.env.PORT||3000)+'/', r=>{if(r.statusCode<400)process.exit(0);process.exit(1)}).on('error',()=>process.exit(1))"
 
-# Usa o start do package.json (ajuste se necessário)
+# Usa o script start do package.json (ex.: "start": "node index.js")
 CMD ["npm", "start"]
