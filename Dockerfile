@@ -1,32 +1,39 @@
-# Dockerfile
-FROM node:20-bookworm-slim
-
-# Garantir logs sem buffer e builds reproduzíveis
-ENV NODE_ENV=production \
-    PYTHONUNBUFFERED=1 \
-    TZ=America/Sao_Paulo
-
-# Dependências de compilação para node-gyp e libs nativas
-RUN apt-get update && apt-get install -y --no-install-recommends \
-      python3 build-essential git ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+# ---- Stage 1: build (tem toolchain)
+FROM cgr.dev/chainguard/node:20-dev AS build
+# cgr.dev/chainguard/* usa Wolfi (apk)
+# Pacotes para node-gyp e nativos
+RUN apk add --no-cache build-base python3 git
 
 WORKDIR /app
 
-# Instale deps primeiro p/ aproveitar cache
+# Instala dependências primeiro para aproveitar cache
 COPY package*.json ./
-# Use npm ci em prod; cai para npm i se não houver package-lock
+# Em produção, geralmente omitimos dev deps; ajuste se precisar compilar algo que está em devDependencies
 RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm i --omit=dev; fi
 
-# Copie o restante do código (inclui src/ e eph/ do Swiss Ephemeris)
+# Copia o restante do código
 COPY . .
 
-# Porta padrão do app (ajuste se seu app usar outra)
+# (Opcional) se você gera build/artefatos, rode aqui (ex.: npm run build)
+# RUN npm run build
+
+# ---- Stage 2: runtime (sem toolchain, mais leve e seguro)
+FROM cgr.dev/chainguard/node:20
+
+ENV NODE_ENV=production \
+    TZ=America/Sao_Paulo
+
+WORKDIR /app
+
+# Copia tudo do build (node_modules já compilados)
+COPY --from=build /app /app
+
+# Ajuste a porta conforme seu app
 EXPOSE 3000
 
-# Healthcheck simples (altere a rota se tiver /health)
+# Healthcheck simples na raiz (mude a rota se tiver /health)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD node -e "require('http').get('http://127.0.0.1:3000/', r=>{if(r.statusCode<400)process.exit(0);process.exit(1)}).on('error',()=>process.exit(1))"
 
-# Se seu start é "node index.js" ou "node app.js", deixe npm start cuidar disso
+# Usa o start do package.json (ajuste se necessário)
 CMD ["npm", "start"]
