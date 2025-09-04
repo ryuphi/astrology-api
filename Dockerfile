@@ -44,3 +44,6 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD node -e "require('http').get('http://127.0.0.1:'+(process.env.PORT||3000)+'/health', r=>{if(r.statusCode<400)process.exit(0);process.exit(1)}).on('error',()=>process.exit(1))"
 
 CMD ["npm", "start"]
+
+ENTRYPOINT ["node"]
+CMD ["server.js"]   # ajuste se o arquivo estiver em outro caminho, ex.: "src/server.js"
