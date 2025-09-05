@@ -1,34 +1,30 @@
 # ---------- STAGE 1: BUILD ----------
 FROM cgr.dev/chainguard/node:latest-dev AS build
 
-# Precisa ser root para instalar toolchain e utilitários
+# Precisamos de root para instalar toolchain e utilitários
 USER root
-# Toolchain para compilar dependências nativas do sweph
 RUN apk add --no-cache build-base python3 git
-# node-gyp global para garantir que está no PATH
+# node-gyp no PATH
 RUN npm i -g node-gyp
-# Indica o Python ao node-gyp via variável de ambiente
+# node-gyp detecta este python
 ENV npm_config_python=/usr/bin/python3
 
-# Cria um usuário fixo para a app (boa prática)
+# Usuário de app (opcional, boa prática)
 RUN adduser -D -u 10001 appuser
 
 WORKDIR /app
 
-# Instale deps primeiro para aproveitar cache
+# Instale deps primeiro (cache)
 COPY package*.json ./
-# Se existir package-lock, usa ci; senão, i
 RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm i --omit=dev; fi
 
-# Copie o restante do projeto (inclui a pasta eph/)
+# Copie o restante (inclui pasta eph/)
 COPY . .
-# Ajusta permissões
 RUN chown -R appuser:appuser /app
 
 # ---------- STAGE 2: RUNTIME ----------
 FROM cgr.dev/chainguard/node:latest
 
-# Root só para criar usuário e acertar permissões
 USER root
 RUN adduser -D -u 10001 appuser
 
@@ -37,18 +33,17 @@ ENV NODE_ENV=production \
     PORT=3000
 
 WORKDIR /app
-# Traz tudo que já foi instalado/compilado
 COPY --from=build /app /app
 RUN chown -R appuser:appuser /app
 
-# Agora roda como não-root
 USER appuser
 
 EXPOSE 3000
 
-# Healthcheck mirando /health (certifique que existe no server.js)
+# Healthcheck aponta para /health (garanta a rota no server.js)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD node -e "require('http').get('http://127.0.0.1:'+(process.env.PORT||3000)+'/health', r=>{if(r.statusCode<400)process.exit(0);process.exit(1)}).on('error',()=>process.exit(1))"
 
-# Deixe explícito qual arquivo iniciar (não dependa do ENTRYPOINT da imagem)
-CMD ["node", "/app/server.js"]
+# IMPORTANTE: a imagem base já tem ENTRYPOINT ["node"].
+# Portanto, passe APENAS o caminho do seu script aqui.
+CMD ["/app/server.js"]
